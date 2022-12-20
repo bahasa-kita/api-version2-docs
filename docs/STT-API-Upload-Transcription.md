@@ -39,7 +39,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   `POST` - When you want upload file and send the other information \
   `GET` - When you want get percentage of process or get the result of transcribe 
 
-### **Request - POST**
+### **Request - POST** (Upload Audio) 
 #### **Headers**
   | Name | Format |
   | ------ | ------ |
@@ -125,7 +125,7 @@ if __name__ == "__main__":
     main()
 ```
 
-### **Request - GET**
+### **Request - GET** (Retrieve Result)
 #### **Headers**
   | Name | Format |
   | ------ | ------ |
