@@ -49,9 +49,9 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | inquery | List | Lists of inquery (data in queuing) |
   | process | List | Lists of process (data in process) |
   | failed | List | Lists of failed (data failed to process) |
-  | uuid | String | uuid session process |
+  | uuid | Key of Object Json | uuid session process |
   | filename | String | audio name from upload |
-  | duration | String | audio duration |
+  | duration | Float | audio duration in seconds |
   | priority | String | queuing priority |
   | msg_in | Int | Counting of input message from user |
   | msg_out | Int |  Counting of output message taken by user |
@@ -67,7 +67,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
                 {
                     "<uuid>": {
                         "filename": "audioname",
-                        "duration": "<int> audio duration",
+                        "duration": <float>,
                         "priority": "queuing priority <high> or <reguler>"
                     }
                 },
@@ -76,7 +76,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
                   {
                     "<uuid>": {
                         "filename": "audioname",
-                        "duration": "<int> audio duration",
+                        "duration": <float>,
                         "priority": "queuing priority <high> or <reguler>"
                     }
                 },
@@ -85,7 +85,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
                 {
                     "<uuid>": {
                         "filename": "audioname",
-                        "duration": "<int> audio duration",
+                        "duration": <float>,
                         "priority": "queuing priority <high> or <reguler>"
                     }
                 },
