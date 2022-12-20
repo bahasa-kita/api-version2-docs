@@ -39,7 +39,7 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
   `POST` - When you want upload file and send priority information \
   `GET` - When you want get the result of transcribe 
 
-### **Request - POST**
+### **Request - POST** (Upload Audio)
 #### **Headers**
   | Name | Format |
   | ------ | ------ |
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     main()
 ```
 
-### **Request - GET**
+### **Request - GET** (Retrieve Result)
 #### **Headers**
   | Name | Format |
   | ------ | ------ |
