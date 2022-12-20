@@ -118,7 +118,7 @@ def main():
       } 
     }
 
-    response = requests.request("POST", url,headers=headers, data = data)
+    response = requests.request("POST", url,headers=headers, json = data)
     if "bk" in response:
         print(response.json())
     else:
