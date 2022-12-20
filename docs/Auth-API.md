@@ -32,7 +32,7 @@ Auth API Documentation is instructions fo creating an user authorization that wi
   [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
 
 ### **Endpoint**
-  `/v2/prod/getToken`
+  `/v2/prod/stt/getToken`
 
 ### **Method:**
   `POST`
@@ -48,13 +48,15 @@ Auth API Documentation is instructions fo creating an user authorization that wi
   | ------ | ------ | ------ |
   | message | String | `success` or `error` message|
   | token | String | |
+  | expires_in | int | token expired in seconds|
 
 ##### **Example Response:**
 ```json
     {"bk":{
         "messsage":"success",
         "data" : {
-            "token":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            "token":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "expires_in':": 2592000
             }
         }
     }  
@@ -74,7 +76,7 @@ Auth API Documentation is instructions fo creating an user authorization that wi
   [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
 
 ### **Endpoint**
-  `/v2/prod/getToken`
+  `/v2/prod/tts/getToken`
 
 ### **Method:**
   `POST`
@@ -90,13 +92,15 @@ Auth API Documentation is instructions fo creating an user authorization that wi
   | ------ | ------ | ------ |
   | message | String | `success` or `error` message|
   | token | String | |
+  | expires_in | int | token expired in seconds |
 
 ##### **Example Response:**
 ```json
     {"bk":{
         "messsage":"success",
         "data" : {
-            "token":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            "token":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "expires_in':": 2592000
             }
         }
     }  
