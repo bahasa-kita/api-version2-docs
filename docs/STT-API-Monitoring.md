@@ -114,7 +114,7 @@ def main():
     response = requests.request("GET", url,headers=headers)
     if "bk" in response:
         print(response.json())
-    esle:
+    else:
         print(response.text)
 
 

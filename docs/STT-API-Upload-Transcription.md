@@ -69,7 +69,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 {
   "bk":
     "data":{ 
-      "target_language":<sting>,
+      "target_language":<string>,
       "diarization":<boolean>,
       "subtitle_cc":<boolean>,
       "uuid":<string>
