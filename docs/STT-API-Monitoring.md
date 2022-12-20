@@ -24,8 +24,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 
 ### **"How to Use" Flow**
   1. Get your token with [Our API](./Auth-API.md) 
-  2. Upload metadata to change priority. 
-  3. Wait for response, and engine will change priority.
+  2. Wait for response, and engine will change priority.
    
 ### **Host:**
   [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
@@ -41,7 +40,6 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 ##### **Headers**
   | Name | Format |
   | ------ | ------ |
-  | Content-Type | `multipart/form-data` |
   | Authorization | `Bearer token` |
 
 #### **Response**
@@ -113,7 +111,7 @@ def main():
         'Authorization': 'Bearer <your token>'
     }
 
-    response = requests.request("POST", url,headers=headers)
+    response = requests.request("GET", url,headers=headers)
     if "bk" in response:
         print(response.json())
     esle:

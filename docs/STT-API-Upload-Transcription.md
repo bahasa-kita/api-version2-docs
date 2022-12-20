@@ -26,7 +26,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   2. Upload the audio you want to transcribe and send the other information like target languange of transcribe to `endpoint-post`. 
   3. Wait for response, it will give you uuid code and message status of transcripting process.
   4. If you want know percentage of your transcripting process, you can get it from `endpoint-get` when message status is `'inprogress'`.
-  5. If you want get the result of transcribe, you can get it from `endpoint-get` when message status is `'process succes'`.
+  5. If you want get the result of transcribe, you can get it from `endpoint-get` when message status is `'process success'`.
    
 ### **Host:**
   [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
@@ -40,13 +40,13 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   `GET` - When you want get percentage of process or get the result of transcribe 
 
 ### **Request - POST**
-##### **Headers**
+#### **Headers**
   | Name | Format |
   | ------ | ------ |
   | Content-Type | `multipart/form-data` |
    | Authorization | `Bearer token` |
 
-##### **Body**
+#### **Body**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | file | File | Your audio file  |
@@ -55,16 +55,16 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | subtitle_cc | Boolean | Transcripting process will also create subtitle file if `True` |
   | priority | String | `'high'` or `'reguler'`, if empty priority it will be `'reguler'` |
 
-##### **Response**
+#### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | target_language | String | Target language of transcribe |
   | diarization | Boolean | Including Process Diarization or Not |
   | subtitle_cc | Boolean | Creating subtitle file or Not |
   | uuid | String | Used for get the result of transcribe |
-  | message_status | String | `'process succes'`, `'process failed'`, `'process inquery'` or `'inprogress'` message |
+  | message_status | String | `'process success'`, `'process failed'`, `'process inquery'` or `'inprogress'` message |
 
-##### **Example Response :**
+#### **Example Response :**
 ```json
 {
   "bk":
@@ -75,69 +75,8 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
       "uuid":<string>
     },
     "message_status" :  <string> 
-  }
 }
 ```
-
-### **Request - GET**
-##### **Response when Message Status `'inprogress'`**
-  | Field | Data Type | Description |
-  | ------ | ------ | ------ |
-  | message status | String | `inprogress` message |
-  | progress status | String | Percentage progress or null |
-
-##### **Example Response :**
-```json
-{
-    "bk": {
-        "message_status": "inprogress",
-        "progress": <percentage> or null
-    }
-}
-```
-
-##### **Response when Message Status `'process succes'`**
-  | Field | Data Type | Description |
-  | ------ | ------ | ------ |
-  | target_language | String | Target language of transcribe |
-  | uuid | String | Used for get the result of transcribe |
-  | total_segments | Integer | Total segment of transcribe result |
-  | transcripts | List | Result of transcribe like text, start time, end time, speaker, etc. |
-  | subtitle_cc | String (base64) | Subtitle file in base64 format, you must decode it |
-  | message status | String | `'process succes'`, `'process failed'`, `'process inquery'` or `'inprogress'` message |
-
-##### **Example Response :**
-```json
-{
-  "bk": {
-    "data": {
-      "target_language": <string>,
-        "uuid": <string>,
-        "total_segments": <int>, 
-        "transcripts":[
-          {
-            "text":"halo nama saya",
-            "text_confidence":0.9,
-            "start_time":<float>,
-            "end_time":<float>,
-            "speaker": "speaker_01", 
-            "words":[
-              {
-                "score":0.9,
-                "word":"halo",
-                "from":0.00,
-                "length":0.1
-              },
-            ]
-          }
-        ],
-      "subtitle_cc": <string> (base64)
-    },
-    "message_status": <string>
-  }
-}
-```
-
 ### **Sample Post in Python:**
 ```python
 import requests
@@ -185,6 +124,71 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+### **Request - GET**
+#### **Headers**
+  | Name | Format |
+  | ------ | ------ |
+  | Authorization | `Bearer token` |
+#### **Response when Message Status `'inprogress'`**
+  | Field | Data Type | Description |
+  | ------ | ------ | ------ |
+  | message status | String | `inprogress` message |
+  | progress status | String | Percentage progress or null |
+
+#### **Example Response :**
+```json
+{
+    "bk": {
+        "message_status": "inprogress",
+        "progress": <percentage> or null
+    }
+}
+```
+
+#### **Response when Message Status `'process success'`**
+  | Field | Data Type | Description |
+  | ------ | ------ | ------ |
+  | target_language | String | Target language of transcribe |
+  | uuid | String | Used for get the result of transcribe |
+  | total_segments | Integer | Total segment of transcribe result |
+  | transcripts | List | Result of transcribe like text, start time, end time, speaker, etc. |
+  | subtitle_cc | String (base64) | Subtitle file in base64 format, you must decode it |
+  | message status | String | `'process success'`, `'process failed'`, `'process inquery'` or `'inprogress'` message |
+
+#### **Example Response :**
+```json
+{
+  "bk": {
+    "data": {
+      "target_language": <string>,
+        "uuid": <string>,
+        "total_segments": <int>, 
+        "transcripts":[
+          {
+            "text":"halo nama saya",
+            "text_confidence":0.9,
+            "start_time":<float>,
+            "end_time":<float>,
+            "speaker": "speaker_01", 
+            "words":[
+              {
+                "score":0.9,
+                "word":"halo",
+                "from":0.00,
+                "length":0.1
+              },
+            ]
+          }
+        ],
+      "subtitle_cc": <string> (base64)
+    },
+    "message_status": <string>
+  }
+}
+```
+
+
 
 ### **Sample Get in Python:**
 ```python

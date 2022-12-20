@@ -41,7 +41,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 ##### **Headers**
   | Name | Format |
   | ------ | ------ |
-  | Content-Type | `multipart/form-data` |
+  | Content-Type | `application/json` |
   | Authorization | `Bearer token` |
 
 ##### **Body**
@@ -50,6 +50,17 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | uuid | String | `Unique ID` is obtained from the response when requesting file upload |
   | priority | String | setting priority `high` or `reguler` |
 
+##### **Example Request**
+```json
+{
+    "bk":{
+        "data": {
+            "uuid" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "priority": "high"
+        }
+    }
+}
+```
 #### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
@@ -99,8 +110,12 @@ def main():
     }
 
     data = {
-        'uuid': args.uuid,
-        'priority': args.priority
+      "bk":{
+        "data" : {
+          'uuid': args.uuid,
+          'priority': args.priority
+          }
+      } 
     }
 
     response = requests.request("POST", url,headers=headers, data = data)

@@ -40,25 +40,25 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
   `GET` - When you want get the result of transcribe 
 
 ### **Request - POST**
-##### **Headers**
+#### **Headers**
   | Name | Format |
   | ------ | ------ |
   | Content-Type | `multipart/form-data` |
    | Authorization | `Bearer token` |
 
-##### **Body**
+#### **Body**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | file | File | Your audio file  |
   | priority | String | `'high'` or `'reguler'`, if empty priority it will be `'reguler'` |
 
-##### **Response**
+#### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | uuid | String | Used for get the result of transcribe |
-  | message_status | String | `'process succes'`, `'process failed'`, `'process inquery'` or `'inprogress'` message |
+  | message_status | String | `'process success'`, `'process failed'`, `'process inquery'` or `'inprogress'` message |
 
-##### **Example Response :**
+#### **Example Response :**
 ```json
 {
   "bk":{
@@ -69,39 +69,6 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
   }
 }
 ```
-
-### **Request - GET**
-##### **Response**
-  | Field | Data Type | Description |
-  | ------ | ------ | ------ |
-  | total_segments | Integer | Total segment of transcribe result |
-  | diarization | List | Result of diarization like start time, end time, and speaker|
-  | message status | String | `'process succes'`, `'process failed'`, `'process inquery'` or `'inprogress'` message |
-
-##### **Example Response :**
-```json
-{
-  "bk": {
-    "data": {
-      "total_segments": 2,
-      "diarization": [
-        {
-          "start_time": 2.1009375000000006,
-          "end_time": 43.697812500000005,
-          "speaker": "SPEAKER_00"
-        },
-        {
-          "start_time": 46.127812500000005,
-          "end_time": 50.025937500000005,
-          "speaker": "SPEAKER_00"
-        }
-      ]
-    },
-    "message_status": "process succes"
-  }
-}
-```
-
 ### **Sample Post in Python:**
 ```python
 import requests
@@ -138,6 +105,45 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+### **Request - GET**
+#### **Headers**
+  | Name | Format |
+  | ------ | ------ |
+  | Authorization | `Bearer token` |
+
+#### **Response**
+  | Field | Data Type | Description |
+  | ------ | ------ | ------ |
+  | total_segments | Integer | Total segment of transcribe result |
+  | diarization | List | Result of diarization like start time, end time, and speaker|
+  | message status | String | `'process success'`, `'process failed'`, `'process inquery'` or `'inprogress'` message |
+
+#### **Example Response :**
+```json
+{
+  "bk": {
+    "data": {
+      "total_segments": 2,
+      "diarization": [
+        {
+          "start_time": 2.1009375000000006,
+          "end_time": 43.697812500000005,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "start_time": 46.127812500000005,
+          "end_time": 50.025937500000005,
+          "speaker": "SPEAKER_00"
+        }
+      ]
+    },
+    "message_status": "process success"
+  }
+}
+```
+
+
 
 ### **Sample Get in Python:**
 ```python
