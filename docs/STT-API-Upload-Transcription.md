@@ -62,19 +62,19 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | diarization | Boolean | Including Process Diarization or Not |
   | subtitle_cc | Boolean | Creating subtitle file or Not |
   | uuid | String | Used for get the result of transcribe |
-  | message_status | String | `'process success'`, `'process failed'`, `'process inquery'` or `'inprogress'` message |
+  | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprogress'` message |
 
 #### **Example Response :**
 ```json
 {
-  "bk":
-    "data":{ 
-      "target_language":<string>,
-      "diarization":<boolean>,
-      "subtitle_cc":<boolean>,
-      "uuid":<string>
-    },
-    "message_status" :  <string> 
+    "bk":
+        "data":{ 
+            "target_language":<string>,
+            "diarization":<boolean>,
+            "subtitle_cc":<boolean>,
+            "uuid":<string>
+        },
+        "message_status" :  <string> 
 }
 ```
 ### **Sample Post in Python:**
@@ -146,7 +146,7 @@ if __name__ == "__main__":
 }
 ```
 
-#### **Response when Message Status `'process success'`**
+#### **Response when Message Status `'success'`**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | target_language | String | Target language of transcribe |
@@ -154,37 +154,37 @@ if __name__ == "__main__":
   | total_segments | Integer | Total segment of transcribe result |
   | transcripts | List | Result of transcribe like text, start time, end time, speaker, etc. |
   | subtitle_cc | String (base64) | Subtitle file in base64 format, you must decode it |
-  | message status | String | `'process success'`, `'process failed'`, `'process inquery'` or `'inprogress'` message |
+  | message status | String | `'success'`, `'failed'`, `'inquery'` or `'inprogress'` message |
 
 #### **Example Response :**
 ```json
 {
-  "bk": {
-    "data": {
-      "target_language": <string>,
-        "uuid": <string>,
-        "total_segments": <int>, 
-        "transcripts":[
-          {
-            "text":"halo nama saya",
-            "text_confidence":0.9,
-            "start_time":<float>,
-            "end_time":<float>,
-            "speaker": "speaker_01", 
-            "words":[
-              {
-                "score":0.9,
-                "word":"halo",
-                "from":0.00,
-                "length":0.1
-              },
-            ]
-          }
-        ],
-      "subtitle_cc": <string> (base64)
-    },
-    "message_status": <string>
-  }
+    "bk": {
+        "data": {
+            "target_language": <string>,
+            "uuid": <string>,
+            "total_segments": <int>, 
+            "transcripts": [
+                {
+                    "text":"halo nama saya",
+                    "text_confidence":0.9,
+                    "start_time":<float>,
+                    "end_time":<float>,
+                    "speaker": "speaker_01", 
+                    "words": [
+                        {
+                            "score":0.9,
+                            "word":"halo",
+                            "from":0.00,
+                            "length":0.1
+                        },
+                    ]
+                }
+            ],
+            "subtitle_cc": <string> (base64)
+        },
+        "message_status": <string>
+    }
 }
 ```
 

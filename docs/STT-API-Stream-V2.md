@@ -111,7 +111,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | type | String | `AudioStream` |
   | status | Int | `200` is `success` or `400` is `failed` |
   | message_status | String | status information |
-  | transcripts | String | full transcript or utterance transcript  |
+  | transcript | List | Result of transcribe conatains [text `<str>`, start time `<float>`, end time `<float>`, speaker `<str>`, words `<list>`, score `<float>`, word `<str>`, from `<float>`, length `<float>`] |
 
 ##### **Data Structure**
 ```json
@@ -120,10 +120,26 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
         "service": "stt",
         "type": "audioStream",
         "data" : {
-            "transcript": ...
+            "transcript": [
+                {
+                    "text": "halo nama saya",
+                    "text_confidence": 0.9,
+                    "start_time": <float>,
+                    "end_time": <float>,
+                    "speaker": "speaker_01", 
+                    "words": [
+                        {
+                            "score": 0.9,
+                            "word": "halo",
+                            "from": 0.00,
+                            "length": 0.1
+                        },
+                    ]
+                }
+            ],
+        },
         "status": 200,
         "message_status": "message status",
-        }
     }
 }
 
@@ -136,14 +152,18 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | ------ | ------ | ------ |
   | service | String | `stt` for speech recognition service|
   | type | String | `AudioStop` |
+  | audio | None | Audio None |
 
 ##### **Data Structure**
 ```json
 {
-  "bk":{
-      "service": "stt",
-      "type": "audioStop",            
-  }
+    "bk":{
+        "service": "stt",
+        "type": "audioStop",
+        "data": {
+            "audio": None
+        }
+    }
 }
 ```
 
@@ -153,20 +173,50 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | ------ | ------ | ------ |
   | service | String | `stt` for speech recognition service|
   | type | String | `AudioStop` |
+  | audio | None | Audio None |
   | status | Int | `200` is `success` or `400` is `failed` |
   | message_status | String | status information |
   
 ##### **Data Structure**
 ```json
 {
-  "bk":{
-    "service":"stt",
-    "type":"audioStop",
-    "status":200,
-    "message_status":"message status"
-  }
+    "bk":{
+        "service": "stt",
+        "type": "audioStop",
+        "data": {
+            "audio": None
+        },
+        "status": 200,
+        "message_status": "message status"
+    }
 }
 ```
+
+#### **Response - Final Transcript**
+##### **Body**
+  | Field | Data Type | Description |
+  | ------ | ------ | ------ |
+  | service | String | `stt` for speech recognition service|
+  | type | String | `AudioStop` |
+  | final | String | Final result transcribe |
+  | status | Int | `200` is `success` or `400` is `failed` |
+  | message_status | String | status information |
+  
+##### **Data Structure**
+```json
+{
+    "bk":{
+        "service": "stt",
+        "type": "audioStop",
+        "data": {
+            "final": "Final transcript texts"
+        }
+        "status": 200,
+        "message_status": "message status"
+    }
+}
+```
+
 
 ### **Sample Call in Python**
 #### **Requeiremets**
@@ -219,12 +269,13 @@ async def main():
                 getattr(signal, signame),
                 functools.partial(ask_exit, signame, stream))
 
-    async with websockets.connect(url) as ws:
+    async with websockets.connect(url, ping_interval=None) as ws:
         # sending "audioConn type"
         msg = {
             "bk": {
                 "service": "stt", 
-                "type": "audioConn"
+                "type": "audioConn",
+                "language": "id"
             }
         }
         await ws.send(json.dumps(msg))
@@ -262,16 +313,20 @@ async def stream_mic(ws, stream):
         msg = json.dumps(msg)
         await ws.send(msg)
     
-    # sending "audioStop type"
-    msg = {
-        "bk": {
-            "service": "stt", 
-            "type": "audioStop"
+    if stream.is_stopped():
+        # sending "audioStop type"
+        msg = {
+            "bk": {
+                "service": "stt", 
+                "type": "audioStop",
+                "data": {
+                    "audio": None
+                }
+            }
         }
-    }
-    msg = json.dumps(msg)
-    await ws.send(msg)
-    #time.sleep(0.1)
+        msg = json.dumps(msg)
+        await ws.send(msg)
+        #time.sleep(0.1)
 
 def pyaudio_callback(in_data, frame_count, time_info, status):
     queue.put_nowait((in_data, status))
@@ -280,20 +335,24 @@ def pyaudio_callback(in_data, frame_count, time_info, status):
 
 async def receive_message(ws, stream):
     print("Waiting Response....")
-    while not stream.is_stopped() :
+    while True:
         try:
-            reply =  await asyncio.wait_for(ws.recv(), timeout=0.01) # Receive message
+            reply =  await asyncio.wait_for(ws.recv(), timeout=0.01) ## Receive message
             if not reply is None:
-                reply = json.loads(reply)                
-                if "stt" in reply["bk"]["service"]:
-                    if "type" in reply["bk"] and "audioStop" == reply["bk"]["type"]:  
-                        print("end of stream audio")                        
-                    elif "data" in reply["bk"]:
-                        if "transcripts" in reply["bk"]["data"]:
-                            print("Transcript :", reply["bk"]["data"]["transcripts"])   
-                        
+                reply = json.loads(reply)
+                if reply["bk"]["service"] == "stt":
+                    if "type" in reply["bk"] and "audioStop" == reply["bk"]["type"]:
+                        print("End of Stream Audio")
+                    if "data" in reply["bk"] and "transcript" in reply["bk"]["data"]:
+                        for transcript in reply["bk"]["data"]["transcript"]:
+                            print("Transcript :", transcript["text"])
+                    if "data" in reply["bk"] and "final" in reply["bk"]["data"]:
+                        print("Final Transcripts :", reply["bk"]["data"]["final"])
+                        stream.stop_stream()
+                        break
         except asyncio.TimeoutError:
             pass
+    await ws.close()
 
 
 if __name__ == "__main__":

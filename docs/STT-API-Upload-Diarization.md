@@ -44,7 +44,7 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
   | Name | Format |
   | ------ | ------ |
   | Content-Type | `multipart/form-data` |
-   | Authorization | `Bearer token` |
+  | Authorization | `Bearer token` |
 
 #### **Body**
   | Field | Data Type | Description |
@@ -56,17 +56,17 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | uuid | String | Used for get the result of transcribe |
-  | message_status | String | `'process success'`, `'process failed'`, `'process inquery'` or `'inprogress'` message |
+  | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprogress'` message |
 
 #### **Example Response :**
 ```json
 {
-  "bk":{
-    "data":{ 
-      "uuid":<string>
-    },
-    "message_status" : <string> 
-  }
+    "bk":{
+        "data": { 
+            "uuid":<string>
+        },
+        "message_status" : <string> 
+    }
 }
 ```
 ### **Sample Post in Python:**
@@ -117,29 +117,29 @@ if __name__ == "__main__":
   | ------ | ------ | ------ |
   | total_segments | Integer | Total segment of transcribe result |
   | diarization | List | Result of diarization like start time, end time, and speaker|
-  | message status | String | `'process success'`, `'process failed'`, `'process inquery'` or `'inprogress'` message |
+  | message status | String | `'success'`, `'failed'`, `'inquery'` or `'inprogress'` message |
 
 #### **Example Response :**
 ```json
 {
-  "bk": {
-    "data": {
-      "total_segments": 2,
-      "diarization": [
-        {
-          "start_time": 2.1009375000000006,
-          "end_time": 43.697812500000005,
-          "speaker": "SPEAKER_00"
+    "bk": {
+        "data": {
+            "total_segments": 2,
+            "diarization": [
+                {
+                    "start_time": 2.1009375000000006,
+                    "end_time": 43.697812500000005,
+                    "speaker": "SPEAKER_00"
+                },
+                {
+                    "start_time": 46.127812500000005,
+                    "end_time": 50.025937500000005,
+                    "speaker": "SPEAKER_00"
+                }
+            ]
         },
-        {
-          "start_time": 46.127812500000005,
-          "end_time": 50.025937500000005,
-          "speaker": "SPEAKER_00"
-        }
-      ]
-    },
-    "message_status": "process success"
-  }
+        "message_status": "process success"
+    }
 }
 ```
 
