@@ -61,6 +61,7 @@ API Text Translation Documentation is guidance for communicate with bahasakita s
 ##### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
+  | uuid | String | UUID string  |
   | source_language | String | Source language of translation like `'Indonesian'` |
   | target_language | String | Target language of translation like `'English'` |
   | text_translation | String | The result of text translation |
@@ -104,6 +105,7 @@ API Text Translation Documentation is guidance for communicate with bahasakita s
 ##### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
+  | uuid | String | UUID string  |
   | source_language | String | Source language of translation like `'Indonesian'` |
   | target_language | String | Target language of translation like `'English'` |
   | summary | Boolean | Boolean of summary |
