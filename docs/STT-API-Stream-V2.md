@@ -109,9 +109,10 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | ------ | ------ | ------ |
   | service | String | `stt` for speech recognition service|
   | type | String | `AudioStream` |
+  | text_type | String | `partial` text or `final` text |
   | status | Int | `200` is `success` or `400` is `failed` |
   | message_status | String | status information |
-  | transcript | List | Result of transcribe conatains [text `<str>`, start time `<float>`, end time `<float>`, speaker `<str>`, words `<list>`, score `<float>`, word `<str>`, from `<float>`, length `<float>`] |
+  | transcript | List | Result of transcribe conatains [text `<str>`, start time `<float>`, end time `<float>`, speaker `<str>`] |
 
 ##### **Data Structure**
 ```json
@@ -126,23 +127,15 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
                     "text_confidence": 0.9,
                     "start_time": <float>,
                     "end_time": <float>,
-                    "speaker": "speaker_01", 
-                    "words": [
-                        {
-                            "score": 0.9,
-                            "word": "halo",
-                            "from": 0.00,
-                            "length": 0.1
-                        },
-                    ]
+                    "speaker": "speaker_01"
                 }
             ],
         },
+        "text_type": "partial",
         "status": 200,
         "message_status": "message status",
     }
 }
-
 ```
 
 ### **STATE 3 AudioStop**
@@ -198,7 +191,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | ------ | ------ | ------ |
   | service | String | `stt` for speech recognition service|
   | type | String | `AudioStop` |
-  | final | String | Final result transcribe |
+  | final | None | Final None |
   | status | Int | `200` is `success` or `400` is `failed` |
   | message_status | String | status information |
   
@@ -209,7 +202,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
         "service": "stt",
         "type": "audioStop",
         "data": {
-            "final": "Final transcript texts"
+            "final": None
         }
         "status": 200,
         "message_status": "message status"
