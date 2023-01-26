@@ -71,7 +71,8 @@ API Text Translation Documentation is guidance for communicate with bahasakita s
 ```json
 {
     "bk": {
-        "data": { 
+        "data": {
+            "uuid": <string>, 
             "source_language": <sting>, 
             "target_language": <string>, 
             "text_translation": <string>, 
@@ -112,7 +113,8 @@ API Text Translation Documentation is guidance for communicate with bahasakita s
 ```json
 {
     "bk": {
-        "data": { 
+        "data": {
+            "uuid": <string>, 
             "source_language": <sting>, 
             "target_language": <string>, 
             "summary": <boolean>
