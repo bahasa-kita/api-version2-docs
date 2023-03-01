@@ -67,6 +67,7 @@ API Text Translation Documentation is guidance for communicate with bahasakita s
   | text_translation | String | The result of text translation |
   | summary | String | The result of text summarization |
   | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprocess'` message |
+  | quota | Int | Your quota balance |
 
 ##### **Example Response :**
 ```json
@@ -77,7 +78,8 @@ API Text Translation Documentation is guidance for communicate with bahasakita s
             "source_language": <sting>, 
             "target_language": <string>, 
             "text_translation": <string>, 
-            "summary": <string>
+            "summary": <string>,
+            "quota": <int>
         }, 
         "message_status": <string> // status response 
     }
@@ -110,6 +112,7 @@ API Text Translation Documentation is guidance for communicate with bahasakita s
   | target_language | String | Target language of translation like `'English'` |
   | summary | Boolean | Boolean of summary |
   | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprocess'` message |
+  | quota | Int | Your quota balance |
 
 ##### **Example Response :**
 ```json
@@ -119,7 +122,8 @@ API Text Translation Documentation is guidance for communicate with bahasakita s
             "uuid": <string>, 
             "source_language": <sting>, 
             "target_language": <string>, 
-            "summary": <boolean>
+            "summary": <boolean>,
+            "quota": <int>
         }, 
         "message_status": <string> // status response 
     }
@@ -131,6 +135,7 @@ API Text Translation Documentation is guidance for communicate with bahasakita s
 import requests
 import os
 from argparse import ArgumentParser
+
 
 def main():
     parser = ArgumentParser()
@@ -149,26 +154,6 @@ def main():
     parser.add_argument("-m", "--max-sentece-sumary", dest="max_sentence_summary",
                 default="1", help="total sentence of summary")
     args = parser.parse_args()
-
-    if ("file" not in args and "url" not in args and "text" not in args) \
-            or "source_language" not in args or "target_language" not in args \
-            or "summary" not in args or ("file" in args and "url" in args \ 
-            and "text" in args):
-        print(f"python {__file__} -f <file-path> -sl <id> -tl <en> -s <True> -m <3>")
-        print(f"python {__file__} -u <url-link> -sl <id> -tl <en> -s <False>")
-        print(f"python {__file__} -t <text-string> -sl <id> -tl <en> -s <True> -m <2>")
-        parser.print_help()
-        return
-
-    if "file" in args and not os.path.exists(args.filename):
-        print(f"python {__file__} -f <file-path> -sl <id> -tl <en> -s <True> -m <3>")
-        parser.print_help()
-        return
-    
-    if "summary" in args and "max_sentence_summary" not in args:
-        print(f"python {__file__} -t <text-string> -sl <id> -tl <en> -s <True> -m <2>")
-        parser.print_help()
-        return
 
     url_post = "https://api.bahasakita.co.id/v2/prod/translate"       ## Sync process
     # url_post = "https://api.bahasakita.co.id/v2/prod/translate/async" ## Async process
@@ -211,7 +196,8 @@ def main():
         post_response = requests.request("POST", url_post, headers=headers, data=data).json()
 
     print(post_response)
-    
+
+
 if __name__ == "__main__":
     main()
 ```
@@ -259,9 +245,8 @@ def main():
     parser = ArgumentParser()
     parser.add_argument("-u", "--uuid", dest="uuid", default = None,
                         help="Write your uuid code")
-
     args = parser.parse_args()
-    
+
     if args.uuid is None :
         parser.print_help()
         return
@@ -272,9 +257,9 @@ def main():
     
     uuid_code = args.uuid    
     url_get = f"https://api.bahasakita.co.id/v2/prod/translate/content/{uuid_code}"
-
     get_response = requests.request("GET", url_get, headers=headers).json()
     print(get_response)
+
 
 if __name__ == "__main__":
     main()
@@ -329,6 +314,7 @@ import requests
 import os
 from argparse import ArgumentParser
 
+
 def main():    
     headers = {
         'Authorization': 'Bearer <your token>'
@@ -336,9 +322,9 @@ def main():
     
     uuid_code = args.uuid    
     url_get = f"https://api.bahasakita.co.id/v2/prod/translate/monitoring"
-
     get_response = requests.request("GET", url_get, headers=headers).json()
     print(get_response)
+
 
 if __name__ == "__main__":
     main()

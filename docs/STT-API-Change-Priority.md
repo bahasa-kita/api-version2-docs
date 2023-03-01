@@ -95,30 +95,27 @@ def main():
                 help="uuid to set new priority")
     parser.add_argument("-u", "--priority", dest="priority",
                 help="set new priority")
-    parser.add_argument("-v", "--verbose",
-                action="store_false", dest="verbose", default=True,
-                help="don't print status messages to stdout")
 
     args = parser.parse_args()
-    if "uuid" not in args or "priority" not in args:
+    if args.uuid is not None or args.priority is not None:
         parser.print_help()
         return
 
     url = "https://api.bahasakita.co.id/v2/prod/stt/changePriority"
     headers = {
-        'Authorization': 'Bearer <your token>'
+        "Authorization': 'Bearer <your token>"
     }
 
     data = {
-      'bk':{
-        'data' : {
-          'uuid': args.uuid,
-          'priority': args.priority
-          }
-      } 
+        'bk':{
+            'data' : {
+                'uuid': args.uuid,
+                'priority': args.priority
+            }
+        } 
     }
 
-    response = requests.request("POST", url,headers=headers, json = data)
+    response = requests.request("POST", url,headers=headers, json=data)
     if "bk" in response:
         print(response.json())
     else:
@@ -127,5 +124,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 ```

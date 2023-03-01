@@ -227,6 +227,7 @@ import signal
 import pyaudio
 import websockets
 
+
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 16000
@@ -245,7 +246,6 @@ async def main():
 
     global queue
     queue = asyncio.Queue()
-
     audio = pyaudio.PyAudio()
     stream = audio.open(
             format=FORMAT,
@@ -255,7 +255,7 @@ async def main():
             frames_per_buffer=CHUNK,
             stream_callback=pyaudio_callback,
         )
-    
+
     loop = asyncio.get_running_loop()
     for signame in {'SIGINT', 'SIGTERM'}:
                 loop.add_signal_handler(
@@ -279,7 +279,6 @@ async def main():
         if reply["bk"]["status"] == 200:
             recieve_task = asyncio.create_task(receive_message(ws,stream))
             stream_task = asyncio.create_task(stream_mic(ws,stream))
-
             await asyncio.gather(
                 recieve_task,
                 stream_task               
@@ -350,5 +349,4 @@ async def receive_message(ws, stream):
 
 if __name__ == "__main__":
     asyncio.run(main())
-
 ```

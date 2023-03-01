@@ -68,6 +68,8 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
                     "<uuid>": {
                         "filename": "audioname",
                         "duration": <float>,
+                        "created": "YYYY-MM-DD HH:mm:ss",
+                        "filesize": <int - "MB">,  
                         "priority": "queuing priority <high> or <reguler>"
                     }
                 },
@@ -77,6 +79,8 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
                     "<uuid>": {
                         "filename": "audioname",
                         "duration": <float>,
+                        "created": "YYYY-MM-DD HH:mm:ss",
+                        "filesize": <int - "MB">, 
                         "priority": "queuing priority <high> or <reguler>"
                     }
                 },
@@ -86,10 +90,23 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
                     "<uuid>": {
                         "filename": "audioname",
                         "duration": <float>,
+                        "created": "YYYY-MM-DD HH:mm:ss",
+                        "filesize": <int - "MB">, 
                         "priority": "queuing priority <high> or <reguler>"
                     }
                 },
             ],
+            "success": [
+                {
+                    "<uuid>": {
+                        "filename": "audioname",
+                        "duration": <float>,
+                        "created": "YYYY-MM-DD HH:mm:ss",
+                        "filesize": <int - "MB">, 
+                        "priority": "queuing priority <high> or <reguler>"
+                    }
+                },
+            ]
         },
       "msg_in": 1,
       "msg_out": 1,
@@ -108,7 +125,7 @@ import sys
 def main():
     url = "https://api.bahasakita.co.id/v2/prod/stt/monitoring"
     headers = {
-        'Authorization': 'Bearer <your token>'
+        "Authorization": "Bearer <your token>"
     }
 
     response = requests.request("GET", url,headers=headers)

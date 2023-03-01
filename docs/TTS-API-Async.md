@@ -40,66 +40,64 @@ Asynchronous Text-to-Speech API Documentation is guidance for communicate with b
 #### **Headers**
   | Name | Format |
   | ------ | ------ |
-   | Authorization | `Bearer token` |
+  | Content-Type | `multipart/form-data` |
+  | Authorization | `Bearer token` |
 
 #### **Body**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
-  | label | String | text type `planttext` or `ssml` |
-  | text | String | text to be generated |
+  | label | String | Text type `plainttext` or `ssml` |
+  | file | File | Your document file to generated text |
+  | url | String | The url you want to retrieve the content to generated text |
+  | text | String | Text to be generated |
+  | Language | String | Choose Language for Synthesize |
+  | volume | String | Set volume output synthesize (Volume Range Value from `1` to `10`)|
+  | pitch | String | Set pitch output synthesize (Pitch Value is `x-low`, `low`, `normal`, `high`, `x-high`) |
+  | speed | String | Set speed output synthesize (Speed Range Value from `0.1` to `2.0`) |
 
-#### **Example Request with plantext**
+##### **Example Request with plaintext**
+This is an example of generating text using the plaintext type
 
-This is an example of generating text using the plantext type
+```text
+text: selamat datang di rumah kami ini
+```
 
+##### **Example Request with SSML**
+This is an example of generating text using SSML type. To understand more, you can follow this [SSML](https://github.com/bahasa-kita/ssml-doc)
+
+```text
+text: <speak> Kamu urutan <say-as interpret-as="ordinal">10</say-as> dalam baris. </speak>
+```
+
+#### **Response Body**
+  | Field | Data Type | Description |
+  | ------ | ------ | ------ |
+  | quota | Int | Quota Balance of Text-To-Speech |
+  | expired | string | Expired Date of Text-To-Speech Audio |
+  | path | String | Path url of Generated Audio |
+  | text | String | Text to be generated |
+  | Language | String | Language for Synthesize |
+  | volume | Int | Set volume output synthesize |
+  | pitch | String |Set pitch output synthesize |
+  | speed | Float | Set speed output synthesize |
+
+###### **Example Response:**
 ```json
-{
+{ 
     "bk": {
-        "data": {
-            "label": "text",
-            "text": "selamat datang di rumah kami ini"
-        },
+        "data": { 
+            "text":"selamat datang di rumah kami ini.",
+            "path":"https://api.bahasakita.co.id/v2/prod/tts/async/content/330576b24f47dd7501a08af9ebcd2e7b4cdd7f2d30a67b245f291359d31687f353d0478d9540367cbeb039a854cac080.wav",
+            "expired": "2022-07-22T04:11:01Z",
+            "quota": 98753
+        }, 
         "config": {
-            "volume": 1,
-            "pitch": "normal",
+            "language": "id",
+            "volume": 1, 
+            "pitch": "normal", 
             "speed": 1.0
         }
     }
-}
-
-```
-
-#### **Example Request with SSML**
-This is an example of generating text using SSML type. To understand more, you can follow this [SSML](https://github.com/bahasa-kita/ssml-doc)
-
-```json
-{
-    "bk": {
-        "data": {
-            "label": "ssml",
-            "text": "<speak> Kamu urutan <say-as interpret-as="ordinal">10</say-as> dalam baris. </speak>"
-        }
-    }
-}
-
-```
-
-#### **Example Response:**
-
-```json
-{ 
-  "bk": {
-    "data": { 
-      "text":"selamat datang di rumah kami ini.",
-      "path":"https://api.bahasakita.co.id/v2/prod/tts/async/content/330576b24f47dd7501a08af9ebcd2e7b4cdd7f2d30a67b245f291359d31687f353d0478d9540367cbeb039a854cac080.wav",
-      "expired": "2022-07-22T04:11:01Z"
-    }, 
-    "config": {
-      "volume": 1, 
-      "pitch": "normal", 
-      "speed": 1.0
-    }
-  }
 }
 
 ```
@@ -129,7 +127,6 @@ This is an example of generating text using SSML type. To understand more, you c
    | Authorization | `Bearer token` |
 
 #### **Example Request**
-
 This is an example of get audio from an audio url path.
 
 ```json
@@ -140,12 +137,10 @@ GET https://api.bahasakita.co.id/v2/prod/tts/async/content/330576b24f47dd7501a08
   | Status | Meaning | Description |
   | ------ | ------ | ------ |
   | 200 | OK, Audio Available |  audio file is available and can be picked up, with header `'content-type':'audio/wav'`|
-  | 204 | OK, No Content | synthesis audio  ongoing process. It's ok, but audio still not complete |
-  | 400 | Request Failed  |  a processing error occurred|
+  | 204 | OK, No Content | synthesis audio ongoing process. It's ok, but audio still not complete |
+  | 400 | Request Failed  | a processing error occurred|
   | 404 | Not Found  | audio not found, maybe because it hasn't been synthesized yet|
   | 410 | Gone  | audio has passed expired date, so it's time to generate again |
-
-
 
 ### **Sample Call in Python:**
 ```python
@@ -153,59 +148,49 @@ import requests
 import time
 import json
 
+
 url = "https://apidev.bahasakita.co.id/v2/prod/tts/async"
 token ="<your_token>" # set your token
 
-def main():
 
+def main():
     text= "Halo saya TTS bahasakita"
     label="text"
     
-    urlpath, expired_date = tts_async(text,label)
-    
-  
+    urlpath, expired_date = tts_async(text, label)
     if urlpath is not None :
-        
         print("expired-date audio :", expired_date)
-      
         audio = get_audio(urlpath)
         audiofile = "audiofile.wav"
-
         try:
             with open(audiofile, "wb") as f:
                 f.write(audio)
                 f.close()
-           
             #os.system("play "+audiofile) #install sox tools for play recording audio .
-
         except:
             print("audio failed")
     else:
         print(" TTS failed")
 
-def tts_async(text : str,label : str):
+def tts_async(text : str, label : str, language : str, volume : str, pitch : str, speed : str):
     path = None
     expired = None
-    
-    headers={'Authorization': 'Bearer '+token+''}
-    
-    msg = {
-        "bk": {
-            "data": {
-                "label" : "text",
-                "text"  : "mencoba menghasilkan audio dari tts bahasakita"
-            }
-        }
+
+    headers={"Authorization": f"Bearer {token}"}
+    data = {
+        "text": atext,
+        "label" : label,
+        "language": lang,
+        "volume": volume,
+        "pitch" : pitch,
+        "speed" : speed
     }
 
-    response = requests.request("POST", url,headers=headers, json=msg)
-    
+    response = requests.request("POST", url,headers=headers, data=data)
     if response.status_code == 200:
-
         body = json.loads(response.text)        
         path = body['bk']['data']['path']
         expired = body['bk']['data']['expired']
-        
     else:
         print(response.text)
 
@@ -213,13 +198,9 @@ def tts_async(text : str,label : str):
 
 def get_audio(path : str):
     result = None
-
     headers={'Authorization': 'Bearer '+token+''}        
-    
     while True:
-        
         response = requests.get(path,headers=headers)
-
         if response.status_code == 204:
             time.sleep(1) # wait 1 second, and then check again audio.
             continue
@@ -238,7 +219,7 @@ def get_audio(path : str):
 
     return result
 
+
 if __name__ == "__main__":
-    main()   
-        
+    main()
 ```

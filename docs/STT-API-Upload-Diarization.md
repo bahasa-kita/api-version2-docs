@@ -57,13 +57,15 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
   | ------ | ------ | ------ |
   | uuid | String | Used for get the result of transcribe |
   | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprogress'` message |
+  | quota | Int | Your quota balance |
 
 #### **Example Response :**
 ```json
 {
     "bk":{
         "data": { 
-            "uuid":<string>
+            "uuid":<string>,
+            "quota": <int>
         },
         "message_status" : <string> 
     }
@@ -74,6 +76,7 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
 import requests
 from argparse import ArgumentParser
 
+
 def main():
     parser = ArgumentParser()
     parser.add_argument("-f", "--file", dest="filename",
@@ -82,14 +85,12 @@ def main():
                 default="reguler", help="priority of transcribe task")
 
     args = parser.parse_args()
-    
     if not os.path.exists(args.filename) :
         parser.print_help()
         return
 
     url_post = "https://api.bahasakita.co.id/v2/prod/diarization/async/upload"
-    
-    headers={'Authorization': 'Bearer <your token>'}
+    headers={"Authorization": "Bearer <your token>"}
     
     file = {
         'file': open(args.filename,'rb')
@@ -101,7 +102,8 @@ def main():
 
     post_response = requests.request("POST", url_post, headers=headers, files=file, data=data).json()
     print(post_response)
-    
+  
+
 if __name__ == "__main__":
     main()
 ```
@@ -151,28 +153,27 @@ import requests
 import time
 from argparse import ArgumentParser
 
+
 def main():
     parser = ArgumentParser()
     parser.add_argument("-u", "--uuid", dest="uuid", default = None,
                         help="Write your uuid code")
 
     args = parser.parse_args()
-    
     if args.uuid is None :
         parser.print_help()
         return
     
-    headers={'Authorization': 'Bearer <your token>'}
-    
+    headers={"Authorization": "Bearer <your token>"}
     uuid_code = args.uuid    
     url_get = f"https://api.bahasakita.co.id/v2/prod/diarization/async/content/{uuid_code}"
-
     while True:
         get_response = requests.request("GET", url_get, headers=headers).json()
         print(get_response)
         if "bk" in get_response and "data" in get_response["bk"] and "diarization" in get_response["bk"]["data"]:
             break
         time.sleep(1.0)
+
 
 if __name__ == "__main__":
     main()

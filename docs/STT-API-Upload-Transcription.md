@@ -53,6 +53,9 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | target_language | String | Target language of transcribe with language code format like `'id'` for Indonesia |
   | diarization | Boolean | Transcripting process will include diarization process if `True` |
   | subtitle_cc | Boolean | Transcripting process will also create subtitle file if `True` |
+  | check_summary | Boolean | Summary process will also create if `True` |
+  | max_sentence_summary | Int | Total sentence for summary |
+  | title | String | Topics or Keywords or Title for summary |
   | priority | String | `'high'` or `'reguler'`, if empty priority it will be `'reguler'` |
 
 #### **Response**
@@ -61,28 +64,34 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | target_language | String | Target language of transcribe |
   | diarization | Boolean | Including Process Diarization or Not |
   | subtitle_cc | Boolean | Creating subtitle file or Not |
+  | summary | Boolean | Creating summary or Not |
   | uuid | String | Used for get the result of transcribe |
   | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprogress'` message |
+  | quota | Int | Your quota balance |
 
 #### **Example Response :**
 ```json
 {
     "bk":
         "data":{ 
-            "target_language":<string>,
-            "diarization":<boolean>,
-            "subtitle_cc":<boolean>,
-            "uuid":<string>
+            "target_language": <string>,
+            "diarization": <boolean>,
+            "subtitle_cc": <boolean>,
+            "check_summary": <boolean>,
+            "uuid": <string>,
+            "quota": <int>
         },
-        "message_status" :  <string> 
+        "message_status": <string> 
 }
 ```
+
 ### **Sample Post in Python:**
 ```python
 import requests
 import os
 import time
 from argparse import ArgumentParser
+
 
 def main():
     parser = ArgumentParser()
@@ -94,33 +103,41 @@ def main():
                 default=False, help="including diarization process")
     parser.add_argument("-s", "--subtitle", dest="subtitle_cc",
                 default=True, help="create subtitle file")
+    parser.add_argument("-sm", "--summary", dest="summary",
+                default=True, help="create subtitle file")
+    parser.add_argument("-t", "--title", dest="titlle",
+                default=True, help="create subtitle file")
+    parser.add_argument("-m", "--max-sentence", dest="max_sentence",
+                default=True, help="create subtitle file")
     parser.add_argument("-p", "--priority", dest="priority",
                 default="reguler", help="priority of transcribe task")
 
     args = parser.parse_args()
-    
     if not os.path.exists(args.filename) :
         parser.print_help()
         return
 
     url_post = "https://api.bahasakita.co.id/v2/prod/stt/async/upload"
-    
-    headers={'Authorization': 'Bearer <your token>'}
-    
+    headers={"Authorization': 'Bearer <your token>"}
+
     file = {
-        'file': open(args.filename,'rb')
+        "file": open(args.filename, "rb")
     }
-    
+
     data = {
-        'target_language': args.target_language,
-        'diarization': args.diarization,
-        'subtitle_cc': args.subtitle_cc,
-        'priority': args.priority
+        "target_language": args.target_language,
+        "diarization": args.diarization,
+        "subtitle_cc": args.subtitle_cc,
+        "check_summary": args.summary,
+        "title": args.title,
+        "max_sentence_summary": args.max_sentence,
+        "priority": args.priority
     }
 
     post_response = requests.request("POST", url_post, headers=headers, files=file, data=data).json()
     print(post_response)
-    
+
+
 if __name__ == "__main__":
     main()
 ```
@@ -202,15 +219,13 @@ def main():
     parser = ArgumentParser()
     parser.add_argument("-u", "--uuid", dest="uuid", default = None,
                         help="Write your uuid code")
-
     args = parser.parse_args()
-    
+
     if args.uuid is None :
         parser.print_help()
         return
     
-    headers={'Authorization': 'Bearer <your token>'}
-    
+    headers={"Authorization": "Bearer <your token>"
     uuid_code = args.uuid    
     url_get = f"https://api.bahasakita.co.id/v2/prod/stt/async/content/{uuid_code}"
 
