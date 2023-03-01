@@ -50,7 +50,7 @@ Asynchronous Text-to-Speech API Documentation is guidance for communicate with b
   | file | File | Your document file to generated text |
   | url | String | The url you want to retrieve the content to generated text |
   | text | String | Text to be generated |
-  | Language | String | Choose Language for Synthesize |
+  | language | String | Choose Language for Synthesize |
   | volume | String | Set volume output synthesize (Volume Range Value from `1` to `10`)|
   | pitch | String | Set pitch output synthesize (Pitch Value is `x-low`, `low`, `normal`, `high`, `x-high`) |
   | speed | String | Set speed output synthesize (Speed Range Value from `0.1` to `2.0`) |
@@ -76,7 +76,7 @@ text: <speak> Kamu urutan <say-as interpret-as="ordinal">10</say-as> dalam baris
   | expired | string | Expired Date of Text-To-Speech Audio |
   | path | String | Path url of Generated Audio |
   | text | String | Text to be generated |
-  | Language | String | Language for Synthesize |
+  | language | String | Language for Synthesize |
   | volume | Int | Set volume output synthesize |
   | pitch | String |Set pitch output synthesize |
   | speed | Float | Set speed output synthesize |
