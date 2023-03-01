@@ -154,10 +154,14 @@ token ="<your_token>" # set your token
 
 
 def main():
-    text= "Halo saya TTS bahasakita"
-    label="text"
+    text = "Halo saya TTS bahasakita"
+    label = "text"
+    language = "id"
+    volume = "1"
+    pitch = "normal"
+    speed = "1.0"
     
-    urlpath, expired_date = tts_async(text, label)
+    urlpath, expired_date = tts_async(text, label, language, volume, pitch, speed)
     if urlpath is not None :
         print("expired-date audio :", expired_date)
         audio = get_audio(urlpath)
@@ -178,7 +182,7 @@ def tts_async(text : str, label : str, language : str, volume : str, pitch : str
 
     headers={"Authorization": f"Bearer {token}"}
     data = {
-        "text": atext,
+        "text": text,
         "label" : label,
         "language": lang,
         "volume": volume,
@@ -200,7 +204,7 @@ def get_audio(path : str):
     result = None
     headers={'Authorization': 'Bearer '+token+''}        
     while True:
-        response = requests.get(path,headers=headers)
+        response = requests.get(path, headers=headers)
         if response.status_code == 204:
             time.sleep(1) # wait 1 second, and then check again audio.
             continue

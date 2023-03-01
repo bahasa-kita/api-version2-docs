@@ -107,10 +107,10 @@ def main():
     }
 
     data = {
-        'bk':{
-            'data' : {
-                'uuid': args.uuid,
-                'priority': args.priority
+        "bk": {
+            "data": {
+                "uuid": args.uuid,
+                "priority": args.priority
             }
         } 
     }

@@ -123,9 +123,16 @@ token = "<your_token>" #set your token
 
 
 def main():
+    text = "Halo saya TTS bahasakita"
+    label = "text"
+    language = "id"
+    volume = "1"
+    pitch = "normal"
+    speed = "1.0"
+
     headers={"Authorization": f"Bearer {token}"}
     data = {
-        "text": atext,
+        "text": text,
         "label" : label,
         "language": lang,
         "volume": volume,
