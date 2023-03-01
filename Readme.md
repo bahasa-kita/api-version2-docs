@@ -16,4 +16,4 @@ Items       | Sub-Items | Description |
  |      |[Async TTS API](./docs/TTS-API-Async.md) | Asynchronous Text-to-Speech API Documentation is guidance for communicate with bahasakita speech synthesizer service, without having to wait for synthesis processing to complete and return an audio url path result |
  Text-Translation   |[Text Translation](./docs/Text-Translation-API.md) | Text Translation API Documentation |
  Text-Summarization |[Text Summarization](./docs/Text-Summarization.md) | Summarization API Documentation |
- Audio-Translation |[Text Summarization](./docs/Audio-Translation.md) | Audio Translation API Documentation |
+ Audio-Translation |[Audio Translation](./docs/Audio-Translation.md) | Audio Translation API Documentation |
