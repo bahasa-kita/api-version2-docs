@@ -50,6 +50,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | file | File | Your audio file  |
+  | source_language | String | Source language of transcribe with language code format like `'id'` for Indonesia. Default value is `detect`, if `source_language` not set or `source_language` is `detect` system will detect language |
   | target_language | String | Target language of transcribe with language code format like `'id'` for Indonesia |
   | diarization | Boolean | Transcripting process will include diarization process if `True` |
   | subtitle_cc | Boolean | Transcripting process will also create subtitle file if `True` |
@@ -61,6 +62,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 #### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
+  | target_language | String | Source language of transcribe |
   | target_language | String | Target language of transcribe |
   | diarization | Boolean | Including Process Diarization or Not |
   | subtitle_cc | Boolean | Creating subtitle file or Not |
@@ -74,6 +76,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 {
     "bk":
         "data":{ 
+            "source_language": <string>,
             "target_language": <string>,
             "diarization": <boolean>,
             "subtitle_cc": <boolean>,
@@ -151,7 +154,7 @@ if __name__ == "__main__":
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | message status | String | `inprogress` message |
-  | progress status | String | Percentage progress or null |
+  | progress | Float | Percentage progress or null |
 
 #### **Example Response :**
 ```json
@@ -163,7 +166,7 @@ if __name__ == "__main__":
 }
 ```
 
-#### **Response when Message Status `'success'`**
+#### **Response when Message Status `'failed'` or `'inquery'` or `'success'`**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | target_language | String | Target language of transcribe |
@@ -171,7 +174,7 @@ if __name__ == "__main__":
   | total_segments | Integer | Total segment of transcribe result |
   | transcripts | List | Result of transcribe like text, start time, end time, speaker, etc. |
   | subtitle_cc | String (base64) | Subtitle file in base64 format, you must decode it |
-  | message status | String | `'success'`, `'failed'`, `'inquery'` or `'inprogress'` message |
+  | message status | String | `'success'`, `'failed'`, `'inquery'` message |
 
 #### **Example Response :**
 ```json
