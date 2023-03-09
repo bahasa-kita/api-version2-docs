@@ -59,6 +59,102 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | title | String | Topics or Keywords or Title for summary |
   | priority | String | `'high'` or `'reguler'`, if empty priority it will be `'reguler'` |
 
+##### **Language List**
+  | Code-Language | Language |
+  | ------ | ------ |
+  | detect | Language Detect |
+  | en | Inggris / English |
+  | zh | Cina / Chinese |
+  | de | Jerman / German |
+  | es | Spanyol / Spanish |
+  | ru | Rusia / Russian |
+  | ko | Korea / Korean |
+  | fr | Perancis / French |
+  | ja | Jepang / Japanese|
+  | pt | Portugis / Portuguese |
+  | tr | Turki / Turkish |
+  | pl | Polandia / Polish |
+  | ca | Katalan / Catalan |
+  | nl | Belanda / Dutch |
+  | ar | Arab / Arabic |
+  | sv | Swedia / Swedish |
+  | it | Italia / Italian |
+  | id | Indonesia / Indonesian |
+  | hi | India / Hindi |
+  | fi | Finlandia / Finnish |
+  | vi | Vietnam / Vietnamese |
+  | he | Ibrani / Hebrew |
+  | uk | Ukraina / Ukraininan|
+  | el | Yunani / Greek |
+  | cs | Ceko / Czech |
+  | ro | Romania / Romanian |
+  | da | Dansk / Danish |
+  | hu | Hungaria / Hungarian |
+  | ta | Tamil |
+  | no | Norwegia / Norwegian |
+  | th | Thai |
+  | ur | Urdu |
+  | hr | Kroasia / Croatian |
+  | bg | Bulgaria / Bulgarian |
+  | lt | Lithuania / Lithuanian|
+  | ml | Malayalam |
+  | cy | Welsh |
+  | sk | Slovakia / Slovak |
+  | te | Telugu |
+  | lv | Latvia / Latvian |
+  | bn | Benggala / Bengala |
+  | sr | Serbia / Serbian |
+  | az | Azerbaijani |
+  | sl | Slovenia / Slovenian |
+  | kn | Kanada / Kannada|
+  | et | Estonia / Estonian |
+  | mk | Makedonia / Macedonian |
+  | eu | Basque |
+  | is | Islandia / Icelandic |
+  | hy | Armenia / Armenian |
+  | ne | Nepali |
+  | bs | Bosnia / Bosnian |
+  | kk | Kazakh |
+  | sq | Albania / Albanian |
+  | sw | Swahili |
+  | gl | Galicia / Galician |
+  | mr | Marathi |
+  | pa | Punjabi |
+  | si | Sinhala |
+  | km | Khmer |
+  | sn | Shona |
+  | yo | Yoruba |
+  | so   | Somalia / Somali |
+  | af | Afrikaans |
+  | oc | Occitan |
+  | ka | Georgia / Georgian |
+  | be | Belarusia / Belarusian |
+  | tg | Tajik |
+  | sd | Sindhi |
+  | gu | Gujarat |
+  | am | Amharik / Amharic |
+  | yi | Yiddish |
+  | lo | Lao |
+  | uz | Uzbek |
+  | fo | Faroe / Faroese |
+  | ht | Kreol Haiti / Haiti Creol|
+  | ps | Pashto |
+  | tk | Turkmenistan / Turkmen |
+  | nn | Nynorsk |
+  | mt | Malta / Maltese|
+  | sa | Sansekerta / Sanskrit |
+  | lb | Luksemburg / Luxembourgish |
+  | saya | Myanmar |
+  | bo | Tibet |
+  | tl | Tagagalog |
+  | as | Assam |
+  | tt | Tatar |
+  | ln | Lingala |
+  | ha | Hausa |
+  | ba | Bashkir |
+  | jw | Jawa / Javanese |
+  | su | Sunda / Sundanese |
+
 #### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
@@ -172,6 +268,7 @@ if __name__ == "__main__":
 #### **Response when Message Status `'failed'` or `'inquery'` or `'success'`**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
+  | source_language | String | Source language of audio |
   | target_language | String | Target language of transcribe |
   | uuid | String | Used for get the result of transcribe |
   | total_segments | Integer | Total segment of transcribe result |
