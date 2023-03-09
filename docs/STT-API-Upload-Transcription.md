@@ -62,7 +62,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 #### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
-  | target_language | String | Source language of transcribe |
+  | source_language | String | Source language of transcribe |
   | target_language | String | Target language of transcribe |
   | diarization | Boolean | Including Process Diarization or Not |
   | subtitle_cc | Boolean | Creating subtitle file or Not |
