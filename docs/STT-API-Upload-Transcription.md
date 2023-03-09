@@ -184,24 +184,16 @@ if __name__ == "__main__":
 {
     "bk": {
         "data": {
+            "source_language": <string>,
             "target_language": <string>,
             "uuid": <string>,
             "total_segments": <int>, 
             "transcripts": [
                 {
                     "text":"halo nama saya",
-                    "text_confidence":0.9,
                     "start_time":<float>,
                     "end_time":<float>,
-                    "speaker": "speaker_01", 
-                    "words": [
-                        {
-                            "score":0.9,
-                            "word":"halo",
-                            "from":0.00,
-                            "length":0.1
-                        },
-                    ]
+                    "speaker": "speaker_01",
                 }
             ],
             "subtitle_cc": <string> (base64)
