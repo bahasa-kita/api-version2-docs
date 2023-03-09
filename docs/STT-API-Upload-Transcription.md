@@ -50,7 +50,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | file | File | Your audio file  |
-  | source_language | String | Source language of transcribe with language code format like `'id'` for Indonesia. Default value is `detect`, if `source_language` not set or `source_language` is `detect` system will detect language |
+  | source_language | String | Source language of audio with language code format like `'id'` for Indonesia. Default value is `detect`, if `source_language` not set or `source_language` is `detect` system will detect languages |
   | target_language | String | Target language of transcribe with language code format like `'id'` for Indonesia |
   | diarization | Boolean | Transcripting process will include diarization process if `True` |
   | subtitle_cc | Boolean | Transcripting process will also create subtitle file if `True` |
@@ -62,7 +62,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 #### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
-  | source_language | String | Source language of transcribe |
+  | source_language | String | Source language of audio |
   | target_language | String | Target language of transcribe |
   | diarization | Boolean | Including Process Diarization or Not |
   | subtitle_cc | Boolean | Creating subtitle file or Not |
@@ -100,7 +100,9 @@ def main():
     parser = ArgumentParser()
     parser.add_argument("-f", "--file", dest="filename",
                 help="write report to FILE", metavar="FILE")
-    parser.add_argument("-l", "--language", dest="target_language",
+    parser.add_argument("-sl", "--source-language", dest="source_language",
+                default="id", help="source language of audio")
+    parser.add_argument("-tl", "--language", dest="target_language",
                 default="id", help="set target language of transcribe")
     parser.add_argument("-d", "--diarization", dest="diarization",
                 default=False, help="including diarization process")
@@ -128,6 +130,7 @@ def main():
     }
 
     data = {
+        "source_language": args.source_language,
         "target_language": args.target_language,
         "diarization": args.diarization,
         "subtitle_cc": args.subtitle_cc,
