@@ -224,6 +224,18 @@ if __name__ == "__main__":
   | summary | String | The result of text summarization |
   | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprocess'` message |
   | created | String | Created request translate datetime (isoformat) |
+  | quota | Int | Remaining quota info |
+  | progress | Float | Progress percentage |
+
+##### **Example Response (Inprogress) :**
+```json
+{
+    "bk": {
+        "progress": <float>, // progress percentage 
+        "message_status": <string>, // status response 
+    }
+}
+```
 
 ##### **Example Response :**
 ```json
@@ -235,6 +247,7 @@ if __name__ == "__main__":
             "text_translation": <string>, 
             "summary": <string>
         }, 
+        "quota": <int>,
         "message_status": <string>, // status response 
         "created": "0000-00-00T00:00:00.000000" // YYYY-MM-DDTHH:mm:ss.ms
     }

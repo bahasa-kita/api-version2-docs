@@ -136,11 +136,39 @@ GET https://api.bahasakita.co.id/v2/prod/tts/async/content/330576b24f47dd7501a08
 ### **Responses**
   | Status | Meaning | Description |
   | ------ | ------ | ------ |
-  | 200 | OK, Audio Available |  audio file is available and can be picked up, with header `'content-type':'audio/wav'`|
-  | 204 | OK, No Content | synthesis audio ongoing process. It's ok, but audio still not complete |
+  | 200 | OK, Audio Available or Audio Synthesize | processing succes or processing synthesize |
   | 400 | Request Failed  | a processing error occurred|
   | 404 | Not Found  | audio not found, maybe because it hasn't been synthesized yet|
   | 410 | Gone  | audio has passed expired date, so it's time to generate again |
+
+##### **Detail Response**
+  | Field | Data Type | Description |
+  | ------ | ------ | ------ |
+  | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprocess'` message |
+  | Audio | String(Base64) | Return audio(base64) |
+  | quota | Int | Remaining quota info |
+  | progress | Float | Progress percentage |
+
+##### **Example Response (Inprogress) :**
+```json
+{
+    "bk": {
+        "progress": <float>, // progress percentage 
+        "message_status": <string>, // status response 
+    }
+}
+```
+
+##### **Example Response :**
+```json
+{
+    "bk": {
+        "audio": <base64>,
+        "quota": <int>,
+        "message_status": <string>, // status response 
+    }
+}
+```
 
 ### **Sample Call in Python:**
 ```python
@@ -206,8 +234,12 @@ def get_audio(path : str):
     while True:
         response = requests.get(path, headers=headers)
         if response.status_code == 204:
-            time.sleep(1) # wait 1 second, and then check again audio.
-            continue
+            if "message_status" in response.json()["bk"] and response.json()["bk"]["message_status"] == "success":
+                    audio = base64.b64decode(response.json()["bk"]["audio"])
+                    break
+                else:
+                    print(json.dumps(response.json(), indent=4))
+                    continue
         elif response.status_code == 200:
             result = response.content 
             break

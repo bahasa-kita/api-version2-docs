@@ -118,7 +118,8 @@ if __name__ == "__main__":
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | total_segments | Integer | Total segment of transcribe result |
-  | diarization | List | Result of diarization like start time, end time, and speaker|
+  | diarization | List | Result of diarization like start time, end time, and speaker |
+  | qota | Int | Remaining quota info |
   | message status | String | `'success'`, `'failed'`, `'inquery'` or `'inprogress'` message |
 
 #### **Example Response :**
@@ -140,11 +141,11 @@ if __name__ == "__main__":
                 }
             ]
         },
+        "quota": <int>,
         "message_status": "process success"
     }
 }
 ```
-
 
 
 ### **Sample Get in Python:**

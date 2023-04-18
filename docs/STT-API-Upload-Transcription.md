@@ -274,6 +274,7 @@ if __name__ == "__main__":
   | total_segments | Integer | Total segment of transcribe result |
   | transcripts | List | Result of transcribe like text, start time, end time, speaker, etc. |
   | subtitle_cc | String (base64) | Subtitle file in base64 format, you must decode it |
+  | quotaa | Int | Remaining quota info |
   | message status | String | `'success'`, `'failed'`, `'inquery'` message |
 
 #### **Example Response :**
@@ -295,11 +296,11 @@ if __name__ == "__main__":
             ],
             "subtitle_cc": <string> (base64)
         },
+        "quota": <int>,
         "message_status": <string>
     }
 }
 ```
-
 
 
 ### **Sample Get in Python:**

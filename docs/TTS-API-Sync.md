@@ -83,7 +83,6 @@ text: <speak> Kamu urutan <say-as interpret-as="ordinal">10</say-as> dalam baris
   | pitch | String | Set pitch output synthesize |
   | speed | Float | Set speed output synthesize |
 
-
 ##### **Example Response:**
 ```json
 {

@@ -147,6 +147,18 @@ if __name__ == "__main__":
   | audio | String(Base64) | The result of audio translation |
   | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprocess'` message |
   | created | String | Created request translate datetime (isoformat) |
+  | quota | Int | Remaining quota info |
+  | progress | Float | Progress percentage |
+
+##### **Example Response (Inprogress) :**
+```json
+{
+    "bk": {
+        "progress": <float>, // progress percentage 
+        "message_status": <string>, // status response 
+    }
+}
+```
 
 ##### **Example Response :**
 ```json
@@ -156,7 +168,8 @@ if __name__ == "__main__":
             "source_language": <sting>, 
             "target_language": <string>, 
             "text_translation": <string>, 
-            "audio": <base64>
+            "audio": <base64>,
+            "quota": <int>
         }, 
         "message_status": <string>, // status response 
         "created": "0000-00-00T00:00:00.000000" // YYYY-MM-DDTHH:mm:ss.ms
