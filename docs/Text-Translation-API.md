@@ -227,17 +227,29 @@ if __name__ == "__main__":
   | quota | Int | Remaining quota info |
   | progress | Float | Progress percentage |
 
-##### **Example Response (Inprogress) :**
+##### **Example Response (Inquery or Failed) :**
 ```json
 {
     "bk": {
-        "progress": <float>, // progress percentage 
-        "message_status": <string>, // status response 
+        "message_status": <string> // status response 
     }
 }
 ```
 
-##### **Example Response :**
+##### **Example Response (Inprogress) :**
+```json
+{
+    "bk": {
+        "data": { 
+            "text_translation": <string>, 
+        }, 
+        "progress": <float>,
+        "message_status": <string> // status response 
+    }
+}
+```
+
+##### **Example Response (Success):**
 ```json
 {
     "bk": {

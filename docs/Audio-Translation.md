@@ -135,7 +135,6 @@ if __name__ == "__main__":
 ##### **Headers**
   | Name | Format |
   | ------ | ------ |
-  | Content-Type | `multipart/form-data` |
   | Authorization | `Bearer token` |
 
 ##### **Response**
@@ -146,16 +145,27 @@ if __name__ == "__main__":
   | text_translation | String | The result of text translation |
   | audio | String(Base64) | The result of audio translation |
   | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprocess'` message |
+  | message_detail | String | Information detail process |
   | created | String | Created request translate datetime (isoformat) |
   | quota | Int | Remaining quota info |
   | progress | Float | Progress percentage |
+
+##### **Example Response (Failed or Inquery) :**
+```json
+{
+    "bk": {
+        "message_status": <string> // status response 
+    }
+}
+```
 
 ##### **Example Response (Inprogress) :**
 ```json
 {
     "bk": {
         "progress": <float>, // progress percentage 
-        "message_status": <string>, // status response 
+        "message_status": "inprogress", // status response 
+        "meesage_detail": <string> // status process
     }
 }
 ```

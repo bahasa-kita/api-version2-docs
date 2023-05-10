@@ -44,7 +44,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | Name | Format |
   | ------ | ------ |
   | Content-Type | `multipart/form-data` |
-   | Authorization | `Bearer token` |
+  | Authorization | `Bearer token` |
 
 #### **Body**
   | Field | Data Type | Description |
@@ -124,7 +124,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | km | Khmer |
   | sn | Shona |
   | yo | Yoruba |
-  | so   | Somalia / Somali |
+  | so | Somalia / Somali |
   | af | Afrikaans |
   | oc | Occitan |
   | ka | Georgia / Georgian |
@@ -144,7 +144,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | mt | Malta / Maltese|
   | sa | Sansekerta / Sanskrit |
   | lb | Luksemburg / Luxembourgish |
-  | saya | Myanmar |
+  | my | Myanmar |
   | bo | Tibet |
   | tl | Tagagalog |
   | as | Assam |
@@ -170,7 +170,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 #### **Example Response :**
 ```json
 {
-    "bk":
+    "bk": {
         "data":{ 
             "source_language": <string>,
             "target_language": <string>,
@@ -180,7 +180,8 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
             "uuid": <string>,
             "quota": <int>
         },
-        "message_status": <string> 
+        "message_status": <string>
+    }
 }
 ```
 
@@ -249,35 +250,60 @@ if __name__ == "__main__":
   | Name | Format |
   | ------ | ------ |
   | Authorization | `Bearer token` |
-#### **Response when Message Status `'inprogress'`**
+
+#### **Response when Message Status `'failed'` or `'inquery'`**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
-  | message status | String | `inprogress` message |
-  | progress | Float | Percentage progress or null |
+  | message status | String | status process |
 
-#### **Example Response :**
+#### **Example Response (Inquery or Failed) :**
 ```json
 {
     "bk": {
-        "message_status": "inprogress",
-        "progress": <percentage> or null
+        "message_status": "inquery"
     }
 }
 ```
 
-#### **Response when Message Status `'failed'` or `'inquery'` or `'success'`**
+#### **Response when Message Status `'inprogress'` or `'success'`**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | source_language | String | Source language of audio |
   | target_language | String | Target language of transcribe |
   | uuid | String | Used for get the result of transcribe |
-  | total_segments | Integer | Total segment of transcribe result |
+  | duration | Int | Information duration audio (second), information will be displayed if status is `success` |
+  | total_segments | Integer | Information total segment of transcribe result, information will be displayed if status is `success` |
   | transcripts | List | Result of transcribe like text, start time, end time, speaker, etc. |
-  | subtitle_cc | String (base64) | Subtitle file in base64 format, you must decode it |
-  | quotaa | Int | Remaining quota info |
-  | message status | String | `'success'`, `'failed'`, `'inquery'` message |
+  | summary | List | Result summary, null string if summary false, data will be displayed if status is `success` |
+  | subtitle_cc | String (base64) | Subtitle file in base64 format, you must decode it, information will be displayed if status is `success` |
+  | quota | Int | Remaining quota info, information will be displayed if status is `success` |
+  | message status | String | `'success'`, `'inprogress'` message |
+  | progress | Float | Percentage progress or null, information will be displayed if status is `inprogress` |
 
-#### **Example Response :**
+#### **Example Response (In-Progress) :**
+```json
+{
+    "bk": {
+        "uuid": <string>,
+        "data": {
+            "source_language": <string>,
+            "target_language": <string>,
+            "transcripts": [
+                {
+                    "text":"halo nama saya",
+                    "start_time":<float>,
+                    "end_time":<float>,
+                    "speaker": "speaker_01",
+                }
+            ]
+        },
+        "progress": <float>,
+        "message_status": "inprogress"
+    }
+}
+```
+
+#### **Example Response (Success) :**
 ```json
 {
     "bk": {
@@ -285,6 +311,7 @@ if __name__ == "__main__":
             "source_language": <string>,
             "target_language": <string>,
             "uuid": <string>,
+            "duration": <int>,
             "total_segments": <int>, 
             "transcripts": [
                 {
@@ -294,14 +321,14 @@ if __name__ == "__main__":
                     "speaker": "speaker_01",
                 }
             ],
-            "subtitle_cc": <string> (base64)
+            "subtitle_cc": <string> (base64),
+            "summary": <str>
         },
         "quota": <int>,
-        "message_status": <string>
+        "message_status": "success"
     }
 }
 ```
-
 
 ### **Sample Get in Python:**
 ```python
