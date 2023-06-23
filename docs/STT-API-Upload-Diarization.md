@@ -9,7 +9,7 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
 
 ## **General API Information**
   - The base endpoint is: 
-    - [https://api.bahasakita.co.id](https://api.bahasakita.co.id) for [REST](https://restfulapi.net/)
+    - [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id) for [REST](https://restfulapi.net/)
      - All endpoints return JSON object.
 
 ## **Tech Stack**
@@ -29,7 +29,7 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
   4. If you want get the result of diarization, you can get it from `endpoint-get`.
    
 ### **Host:**
-  [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
+  [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id)
 
 ### **Endpoint**
  Post data: `/v2/prod/diarization/async/upload` \
@@ -89,7 +89,7 @@ def main():
         parser.print_help()
         return
 
-    url_post = "https://api.bahasakita.co.id/v2/prod/diarization/async/upload"
+    url_post = "https://stagapi.bahasakita.co.id/v2/prod/diarization/async/upload"
     headers={"Authorization": "Bearer <your token>"}
     
     file = {
@@ -167,7 +167,7 @@ def main():
     
     headers={"Authorization": "Bearer <your token>"}
     uuid_code = args.uuid    
-    url_get = f"https://api.bahasakita.co.id/v2/prod/diarization/async/content/{uuid_code}"
+    url_get = f"https://stagapi.bahasakita.co.id/v2/prod/diarization/async/content/{uuid_code}"
     while True:
         get_response = requests.request("GET", url_get, headers=headers).json()
         print(get_response)

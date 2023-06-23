@@ -12,7 +12,7 @@ Asynchronous Text-to-Speech API Documentation is guidance for communicate with b
 
 ## **General API Information**
   - The base endpoint is: 
-    - [https://api.bahasakita.co.id](https://api.bahasakita.co.id) for [REST](https://restfulapi.net/)
+    - [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id) for [REST](https://restfulapi.net/)
      - endpoints return can be JSON object or audio content-type.
 
 ## **Tech Stack**
@@ -28,7 +28,7 @@ Asynchronous Text-to-Speech API Documentation is guidance for communicate with b
   3. You will get return an audio url path and an expired date response indicating when the audio can still be retrieved.
    
 ### **Host:**
-  [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
+  [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id)
 
 ### **Endpoint**
   `/v2/prod/tts/async`
@@ -87,7 +87,7 @@ text: <speak> Kamu urutan <say-as interpret-as="ordinal">10</say-as> dalam baris
     "bk": {
         "data": { 
             "text":"selamat datang di rumah kami ini.",
-            "path":"https://api.bahasakita.co.id/v2/prod/tts/async/content/330576b24f47dd7501a08af9ebcd2e7b4cdd7f2d30a67b245f291359d31687f353d0478d9540367cbeb039a854cac080.wav",
+            "path":"https://stagapi.bahasakita.co.id/v2/prod/tts/async/content/330576b24f47dd7501a08af9ebcd2e7b4cdd7f2d30a67b245f291359d31687f353d0478d9540367cbeb039a854cac080.wav",
             "expired": "2022-07-22T04:11:01Z",
             "quota": 98753
         }, 
@@ -112,10 +112,10 @@ text: <speak> Kamu urutan <say-as interpret-as="ordinal">10</say-as> dalam baris
   3. It's sucessful, you can play audio result. 
 
 ### **Host:**
-  [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
+  [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id)
 
 ### **Endpoint**
-  `/v2/prod/tts/async/content/<audio_id>`
+  `/v2/prod/tts/async/content/<uuid>`
 
 ### **Method:**
   `GET`
@@ -127,10 +127,10 @@ text: <speak> Kamu urutan <say-as interpret-as="ordinal">10</say-as> dalam baris
    | Authorization | `Bearer token` |
 
 #### **Example Request**
-This is an example of get audio from an audio url path.
+This is an example of get TTS audio from uuid.
 
 ```json
-GET https://api.bahasakita.co.id/v2/prod/tts/async/content/330576b24f47dd7501a08af9ebcd2e7b4cdd7f2d30a67b245f291359d31687f353d0478d9540367cbeb039a854cac080.wav
+GET https://stagapi.bahasakita.co.id/v2/prod/tts/async/content/<uuid>
 
 ```
 ### **Responses**

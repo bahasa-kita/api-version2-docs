@@ -9,7 +9,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 
 ## **General API Information**
   - The base endpoint is: 
-    - [https://api.bahasakita.co.id](https://api.bahasakita.co.id) for [REST](https://restfulapi.net/)
+    - [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id) for [REST](https://restfulapi.net/)
      - All endpoints return JSON object.
 
 ## **Tech Stack**
@@ -29,7 +29,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   5. If you want get the result of transcribe, you can get it from `endpoint-get` when message status is `'process success'`.
    
 ### **Host:**
-  [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
+  [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id)
 
 ### **Endpoint**
  Post data: `/v2/prod/stt/async/upload` \
@@ -219,7 +219,7 @@ def main():
         parser.print_help()
         return
 
-    url_post = "https://api.bahasakita.co.id/v2/prod/stt/async/upload"
+    url_post = "https://stagapi.bahasakita.co.id/v2/prod/stt/async/upload"
     headers={"Authorization': 'Bearer <your token>"}
 
     file = {
@@ -350,7 +350,7 @@ def main():
     
     headers={"Authorization": "Bearer <your token>"
     uuid_code = args.uuid    
-    url_get = f"https://api.bahasakita.co.id/v2/prod/stt/async/content/{uuid_code}"
+    url_get = f"https://stagapi.bahasakita.co.id/v2/prod/stt/async/content/{uuid_code}"
 
     while True:
         get_response = requests.request("GET", url_get, headers=headers).json()
