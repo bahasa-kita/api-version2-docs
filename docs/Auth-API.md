@@ -6,7 +6,6 @@ Auth API Documentation is instructions fo creating an user authorization that wi
   - [General API Information](##general-api-information)
   - [Tech Stack](##tech-stack)
   - `API`
-    - [Get API-KEY Session Token](##get-apikey-session-token)
     - [Get Token Service API](##get-token-api)
   - [Sample in Python](##sample-in-python)
   
@@ -20,49 +19,6 @@ Auth API Documentation is instructions fo creating an user authorization that wi
   - **[REST](https://restfulapi.net/)**
 
 ## **Get APIKEY Session Token**
-  In order to use our services, you need to get the token with your registered account.
-
-### **"How to Use" Flow**
-  1. Register your account at [dikte.in](https://diktein.in)
-  2. Send request to the endpoint with required fields in below. 
-  3. Wait for response, if `success` you can use the token to get Token Services.
-
-### **Host:**
-  [https://devapi.bahasakita.co.id](https://devapi.bahasakita.co.id)
-
-### **Endpoint**
-  `/v2/prod/generateapikey`
-
-### **Method:**
-  `GET`
-
-### **Request**
-#### **Headers**
-  | Name | Format |
-  | ------ | ------ |
-  | Authorization | `Basic <Base64(email:password)>` |
-
-### **Response**
-  | Field | Data Type | Description |
-  | ------ | ------ | ------ |
-  | message | String | `success` or `error` message|
-  | token | String | |
-  | expires_in | int | token expired in seconds (expires in 300 second / 5 minutes)|
-
-#### **Example Response:**
-```json
-    {
-        "bk": {
-            "message_status": "success",
-            "data" : {
-                "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-                "expires_in": 300
-            }
-        }
-    }  
-```
-
-## **Get Token Service API**
   In order to use our services, you need to get the token with your registered account.
 
 ### **"How to Use" Flow**
@@ -83,18 +39,7 @@ Auth API Documentation is instructions fo creating an user authorization that wi
 #### **Headers**
   | Name | Format |
   | ------ | ------ |
-  | Authorization | `Bearer <APIKEY_TOKEN>` |
-  | Content-Type | `application/json` |
-
-#### **Payload Request**
- - Service &rarr; `stt`, `tts`, `text-translate`, `audio-translate`, `all`
-```json
-    {
-        "bk": {
-            "service": "all"
-        }
-    }
-```
+  | Authorization | `Basic <Base64(email:password)>` |
 
 ### **Response**
   | Field | Data Type | Description |
@@ -144,30 +89,19 @@ import base64
 
 
 def main():
-    url1 = f"https://stagapi.bahasakita.co.id/v2/prod/generateapikey"
-    url2 = f"https://stagapi.bahasakita.co.id/v2/prod/getTokenServices"
+    url = f"https://stagapi.bahasakita.co.id/v2/prod/getTokenServices"
 
     auth = base64.b64encode(f"{str(username)}:{str(password)}".encode("utf-8")).decode("ascii")
     headers_apikey = {
         "Authorization": f"Basic {auth}"
     }
-    response_get = requests.request("GET", url1, headers=headers_apikey)
+
+    response_get = requests.request("GET", url, headers=headers_apikey)
     if response_get.status_code == 200:
-        token = response_get.json()["bk"]["data"]["token"]
-
-        data = {
-            "bk": {
-                "service": "all"
-            }
-        }
-
-        headers = {
-            "Authorization": f"Bearer {token}"
-        }
-
-        response_post = requests.request("POST", url2, headers=headers, json=data)
-        if response_post.status_code == 200 or response_post.status_code == 201 or response_post.status_code == 202:
-                print(json.dumps(response_post.json(), indent=4))
+        token_stt = response_get.json()["bk"]["token_data_stt"]
+        token_tts = response_get.json()["bk"]["token_data_tts"]
+        token_text_translate = response_get.json()["bk"]["token_data_text_translate"]
+        token_audio_translate = response_get.json()["bk"]["token_data_audio_translate"]
 
 if __name__ == "__main__":
     main()
