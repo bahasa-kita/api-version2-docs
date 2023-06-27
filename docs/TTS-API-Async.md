@@ -177,7 +177,7 @@ import time
 import json
 
 
-url = "https://apidev.bahasakita.co.id/v2/prod/tts/async"
+url = "https://stagapi.bahasakita.co.id/v2/prod/tts/async"
 token ="<your_token>" # set your token
 
 
@@ -232,16 +232,17 @@ def get_audio(path : str):
     result = None
     headers={'Authorization': 'Bearer '+token+''}        
     while True:
+      url_get = f"https://stagapi.bahasakita.co.id/v2/prod/tts/async/content/{uuid}"
         response = requests.get(path, headers=headers)
-        if response.status_code == 204:
+        if response.status_code == 200:
             if "message_status" in response.json()["bk"] and response.json()["bk"]["message_status"] == "success":
                     audio = base64.b64decode(response.json()["bk"]["audio"])
                     break
                 else:
                     print(json.dumps(response.json(), indent=4))
                     continue
-        elif response.status_code == 200:
-            result = response.content 
+        elif response.status_code == 401:
+            print("invalid token")    
             break
         elif response.status_code == 400:
             print("processing failed")
