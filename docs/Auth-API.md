@@ -11,8 +11,8 @@ Auth API Documentation is instructions fo creating an user authorization that wi
   
 ## **General API Information**
   - The base endpoint is: 
-    - [https://dikte.in](https://dikte.in) for Register Account
-    - [https://devapi.bahasakita.co.id](https://devapi.bahasakita.co.id) for [REST](https://restfulapi.net/)
+    - [https://dikte.in](https://dikte.in/#/regis?) for Register Account
+    - [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id) for [REST](https://restfulapi.net/)
     - endpoints return is JSON format.
 
 ## **Tech Stack**
@@ -22,18 +22,18 @@ Auth API Documentation is instructions fo creating an user authorization that wi
   In order to use our services, you need to get the token with your registered account.
 
 ### **"How to Use" Flow**
-  1. Register your account at [console.bahasakita.co.id](https://console.bahasakita.co.id/login), You can get tokens in the console application or
+  1. Register your account at [dikte.in](https://dikte.in/#/regis?), You can get tokens in the console application or
   2. Send request to the endpoint with required fields. 
   3. Wait for response, if `success` you can use the token to use our API service.
 
 ### **Host:**
-  [https://devapi.bahasakita.co.id](https://devapi.bahasakita.co.id)
+  [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id)
 
 ### **Endpoint**
   `/v2/prod/tts/getTokenServices`
 
 ### **Method:**
-  `POST`
+  `GET`
 
 ### **Request**
 #### **Headers**
@@ -44,9 +44,11 @@ Auth API Documentation is instructions fo creating an user authorization that wi
 ### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
-  | message | String | `success` or `error` message|
-  | token | String | |
-  | expires_in | int | token expired in seconds |
+  | message_status | String | `success` or `error` message|
+  | token_data_stt | String | data for stt services, contains `expires_date`, `quota`e, `token`, and `type` |
+  | token_data_tts | String | data for tts services, contains `expires_date`, `quota`e, `token`, and `type` |
+  | token_data_text_translate | String | data for text-translate services, contains `expires_date`, `quota`e, `token`, and `type` |
+  | token_data_audio_translate | String | data for audio-tanslate services, contains `expires_date`, `quota`e, `token`, and `type` |
 
 #### **Example Response:**
 ```json
