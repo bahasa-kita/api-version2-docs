@@ -45,10 +45,10 @@ Auth API Documentation is instructions fo creating an user authorization that wi
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | message_status | String | `success` or `error` message|
-  | token_data_stt | String | data for stt services, contains `expires_date`, `quota`e, `token`, and `type` |
-  | token_data_tts | String | data for tts services, contains `expires_date`, `quota`e, `token`, and `type` |
-  | token_data_text_translate | String | data for text-translate services, contains `expires_date`, `quota`e, `token`, and `type` |
-  | token_data_audio_translate | String | data for audio-tanslate services, contains `expires_date`, `quota`e, `token`, and `type` |
+  | token_data_stt | String | data for stt services, contains `expires_date`, `quota`, `token`, and `type` |
+  | token_data_tts | String | data for tts services, contains `expires_date`, `quota`, `token`, and `type` |
+  | token_data_text_translate | String | data for text-translate services, contains `expires_date`, `quota`, `token`, and `type` |
+  | token_data_audio_translate | String | data for audio-tanslate services, contains `expires_date`, `quota`, `token`, and `type` |
 
 #### **Example Response:**
 ```json
