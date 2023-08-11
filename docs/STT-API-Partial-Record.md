@@ -25,7 +25,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | [stop stream audio](#state-3-audiostop) | type : AudioStop    | end stream. you need to request [start stream audio](#start-stream-audio) if you want to send audio again after [stop stream audio](#stop-stream-audio) |
 
 ### **URL ACCESS**
-  `wss://stagapi.bahasakita.co.id/v2/prod/stt/record?token=xxxxxxxxxx`
+  `wss://api.bahasakita.co.id/v2/prod/stt/record?token=xxxxxxxxxx`
 
 ### **"How to Use" Flow**
   1. get token with access [Our API](./Auth-API.md)
@@ -303,7 +303,7 @@ def ask_exit(signame, stream):
     
 async def main():
     # Websocket URL, changed with your token
-    url = f"wss://stagapi.bahasakita.co.id/v2/prod/stt/record?token={AUTH_TOKEN}"
+    url = f"wss://api.bahasakita.co.id/v2/prod/stt/record?token={AUTH_TOKEN}"
 
     global queue
     queue = asyncio.Queue()

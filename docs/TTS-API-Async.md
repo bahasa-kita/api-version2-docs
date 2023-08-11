@@ -12,7 +12,7 @@ Asynchronous Text-to-Speech API Documentation is guidance for communicate with b
 
 ## **General API Information**
   - The base endpoint is: 
-    - [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id) for [REST](https://restfulapi.net/)
+    - [https://api.bahasakita.co.id](https://api.bahasakita.co.id) for [REST](https://restfulapi.net/)
      - endpoints return can be JSON object or audio content-type.
 
 ## **Tech Stack**
@@ -28,7 +28,7 @@ Asynchronous Text-to-Speech API Documentation is guidance for communicate with b
   3. You will get return an audio url path and an expired date response indicating when the audio can still be retrieved.
    
 ### **Host:**
-  [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id)
+  [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
 
 ### **Endpoint**
   `/v2/prod/tts/async`
@@ -87,7 +87,7 @@ text: <speak> Kamu urutan <say-as interpret-as="ordinal">10</say-as> dalam baris
     "bk": {
         "data": { 
             "text":"selamat datang di rumah kami ini.",
-            "path":"https://stagapi.bahasakita.co.id/v2/prod/tts/async/content/330576b24f47dd7501a08af9ebcd2e7b4cdd7f2d30a67b245f291359d31687f353d0478d9540367cbeb039a854cac080.wav",
+            "path":"https://api.bahasakita.co.id/v2/prod/tts/async/content/330576b24f47dd7501a08af9ebcd2e7b4cdd7f2d30a67b245f291359d31687f353d0478d9540367cbeb039a854cac080.wav",
             "expired": "2022-07-22T04:11:01Z",
             "quota": 98753
         }, 
@@ -112,7 +112,7 @@ text: <speak> Kamu urutan <say-as interpret-as="ordinal">10</say-as> dalam baris
   3. It's sucessful, you can play audio result. 
 
 ### **Host:**
-  [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id)
+  [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
 
 ### **Endpoint**
   `/v2/prod/tts/async/content/<uuid>`
@@ -130,7 +130,7 @@ text: <speak> Kamu urutan <say-as interpret-as="ordinal">10</say-as> dalam baris
 This is an example of get TTS audio from uuid.
 
 ```json
-GET https://stagapi.bahasakita.co.id/v2/prod/tts/async/content/<uuid>
+GET https://api.bahasakita.co.id/v2/prod/tts/async/content/<uuid>
 
 ```
 ### **Responses**
@@ -177,7 +177,7 @@ import time
 import json
 
 
-url = "https://stagapi.bahasakita.co.id/v2/prod/tts/async"
+url = "https://api.bahasakita.co.id/v2/prod/tts/async"
 token ="<your_token>" # set your token
 
 
@@ -232,7 +232,7 @@ def get_audio(path : str):
     result = None
     headers={'Authorization': 'Bearer '+token+''}        
     while True:
-      url_get = f"https://stagapi.bahasakita.co.id/v2/prod/tts/async/content/{uuid}"
+      url_get = f"https://api.bahasakita.co.id/v2/prod/tts/async/content/{uuid}"
         response = requests.get(path, headers=headers)
         if response.status_code == 200:
             if "message_status" in response.json()["bk"] and response.json()["bk"]["message_status"] == "success":

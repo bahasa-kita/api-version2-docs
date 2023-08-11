@@ -9,7 +9,7 @@ API Audio Translation Documentation is guidance for communicate with bahasakita 
 
 ## **General API Information**
   - The base endpoint is: 
-    - [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id) for [REST](https://restfulapi.net/)
+    - [https://api.bahasakita.co.id](https://api.bahasakita.co.id) for [REST](https://restfulapi.net/)
      - All endpoints return JSON object.
 
 ## **Tech Stack**
@@ -28,7 +28,7 @@ API Audio Translation Documentation is guidance for communicate with bahasakita 
   4. If you want get the result of translation, you can get it from `endpoint-get` when message status is `'success'`.
    
 ### **Host:**
-  [https://stagapi.bahasakita.co.id](https://stagapi.bahasakita.co.id)
+  [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
 
 ### **Endpoint**
  Post data: `/v2/prod/speechtranslation` \
@@ -98,7 +98,7 @@ def main():
                 default="en", help="set target language of translate")
     args = parser.parse_args()
 
-    url_post = "https://stagapi.bahasakita.co.id/v2/prod/speechtranslation"       ## Sync process
+    url_post = "https://api.bahasakita.co.id/v2/prod/speechtranslation"       ## Sync process
     headers= {
         "Authorization": "Bearer <your token>"
     }
@@ -210,7 +210,7 @@ def main():
     }
     
     uuid_code = args.uuid    
-    url_get = f"https://stagapi.bahasakita.co.id/v2/prod/speechtranslation/content/{uuid_code}"
+    url_get = f"https://api.bahasakita.co.id/v2/prod/speechtranslation/content/{uuid_code}"
     get_response = requests.request("GET", url_get, headers=headers).json()
     print(get_response)
 
@@ -275,7 +275,7 @@ def main():
     }
     
     uuid_code = args.uuid    
-    url_get = f"https://stagapi.bahasakita.co.id/v2/prod/speechtranslation/monitoring"
+    url_get = f"https://api.bahasakita.co.id/v2/prod/speechtranslation/monitoring"
     get_response = requests.request("GET", url_get, headers=headers).json()
     print(get_response)
 
