@@ -30,7 +30,7 @@ Auth API Documentation is instructions fo creating an user authorization that wi
   [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
 
 ### **Endpoint**
-  `/v2/prod/tts/getTokenServices`
+  `/v2/prod/getTokenServices`
 
 ### **Method:**
   `GET`
