@@ -142,7 +142,8 @@ if __name__ == "__main__":
   | ------ | ------ | ------ |
   | source_language | String | Source language of translation like `'Indonesian'` |
   | target_language | String | Target language of translation like `'English'` |
-  | text_translation | String | The result of text translation |
+  | transcripts | String | The result of transcriptions |
+  | list_text_translation | String | List of text-translation |
   | audio | String(Base64) | The result of audio translation |
   | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprocess'` message |
   | message_detail | String | Information detail process |
@@ -244,20 +245,22 @@ if __name__ == "__main__":
 {
     "bk": {
         "data": { 
-            "username" : <string>, 
-            "history": [
+            "source_language": <sting>, 
+            "target_language": <string>, 
+            "transcripts": [
                 {
-                    "uuid": <string>, 
-                    "input_type": <string>, 
-                    "source": <string>, 
-                    "created_date": datetime.isoformat(), 
-                    "char_length": <int>, 
-                    "message_status": <string>
-                }
-            ]
+                    "text": <string>,
+                    "start": <float>,
+                    "end": <float>,
+                    "speaker": null
+                },
+            ], 
+            "list_text_translation": <list>,
+            "audio": <base64>,
         }, 
-        "total_usage": <int>, 
-        "message_status" : <string>
+        "quota": <int>,
+        "message_status": <string>, // status response 
+        "created": "0000-00-00T00:00:00.000000" // YYYY-MM-DDTHH:mm:ss.ms
     }
 }
 ```
