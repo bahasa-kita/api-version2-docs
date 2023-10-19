@@ -86,6 +86,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | he | Ibrani / Hebrew |
   | uk | Ukraina / Ukraininan|
   | el | Yunani / Greek |
+  | ms | Malay |
   | cs | Ceko / Czech |
   | ro | Romania / Romanian |
   | da | Dansk / Danish |
