@@ -54,107 +54,106 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | target_language | String | Target language of transcribe with language code format like `'id'` for Indonesia |
   | diarization | Boolean | Transcripting process will include diarization process if `True` |
   | subtitle_cc | Boolean | Transcripting process will also create subtitle file if `True` |
-  | check_summary | Boolean | Summary process will also create if `True` |
-  | max_sentence_summary | Int | Total sentence for summary |
-  | title | String | Topics or Keywords or Title for summary |
+  | resume | Boolean | Resume process will also create if `True` |
+  | wordcloud | Boolean | Wordcloud process will also create if `True` |
   | priority | String | `'high'` or `'reguler'`, if empty priority it will be `'reguler'` |
 
-##### **Language List**
+#### **Language List**
   | Code-Language | Language |
   | ------ | ------ |
   | detect | Language Detect |
-  | en | Inggris / English |
-  | zh | Cina / Chinese |
-  | de | Jerman / German |
-  | es | Spanyol / Spanish |
-  | ru | Rusia / Russian |
-  | ko | Korea / Korean |
-  | fr | Perancis / French |
-  | ja | Jepang / Japanese|
-  | pt | Portugis / Portuguese |
-  | tr | Turki / Turkish |
-  | pl | Polandia / Polish |
-  | ca | Katalan / Catalan |
-  | nl | Belanda / Dutch |
-  | ar | Arab / Arabic |
-  | sv | Swedia / Swedish |
-  | it | Italia / Italian |
   | id | Indonesia / Indonesian |
-  | hi | India / Hindi |
-  | fi | Finlandia / Finnish |
-  | vi | Vietnam / Vietnamese |
-  | he | Ibrani / Hebrew |
-  | uk | Ukraina / Ukraininan|
-  | el | Yunani / Greek |
-  | ms | Malay |
-  | cs | Ceko / Czech |
-  | ro | Romania / Romanian |
-  | da | Dansk / Danish |
-  | hu | Hungaria / Hungarian |
-  | ta | Tamil |
-  | no | Norwegia / Norwegian |
-  | th | Thai |
-  | ur | Urdu |
-  | hr | Kroasia / Croatian |
-  | bg | Bulgaria / Bulgarian |
-  | lt | Lithuania / Lithuanian|
-  | ml | Malayalam |
-  | cy | Welsh |
-  | sk | Slovakia / Slovak |
-  | te | Telugu |
-  | lv | Latvia / Latvian |
-  | bn | Benggala / Bengala |
-  | sr | Serbia / Serbian |
-  | az | Azerbaijani |
-  | sl | Slovenia / Slovenian |
-  | kn | Kanada / Kannada|
-  | et | Estonia / Estonian |
-  | mk | Makedonia / Macedonian |
-  | eu | Basque |
-  | is | Islandia / Icelandic |
-  | hy | Armenia / Armenian |
-  | ne | Nepali |
-  | bs | Bosnia / Bosnian |
-  | kk | Kazakh |
-  | sq | Albania / Albanian |
-  | sw | Swahili |
-  | gl | Galicia / Galician |
-  | mr | Marathi |
-  | pa | Punjabi |
-  | si | Sinhala |
-  | km | Khmer |
-  | sn | Shona |
-  | yo | Yoruba |
-  | so | Somalia / Somali |
+  | en | Inggris / English |
   | af | Afrikaans |
-  | oc | Occitan |
-  | ka | Georgia / Georgian |
-  | be | Belarusia / Belarusian |
-  | tg | Tajik |
-  | sd | Sindhi |
-  | gu | Gujarat |
   | am | Amharik / Amharic |
-  | yi | Yiddish |
-  | lo | Lao |
-  | uz | Uzbek |
-  | fo | Faroe / Faroese |
-  | ht | Kreol Haiti / Haiti Creol|
-  | ps | Pashto |
-  | tk | Turkmenistan / Turkmen |
-  | nn | Nynorsk |
-  | mt | Malta / Maltese|
-  | sa | Sansekerta / Sanskrit |
-  | lb | Luksemburg / Luxembourgish |
-  | my | Myanmar |
-  | bo | Tibet |
-  | tl | Tagagalog |
+  | ar | Arab / Arabic |
   | as | Assam |
-  | tt | Tatar |
-  | ln | Lingala |
-  | ha | Hausa |
+  | az | Azerbaijani |
   | ba | Bashkir |
+  | be | Belarusia / Belarusian |
+  | bg | Bulgaria / Bulgarian |
+  | bn | Benggala / Bengala |
+  | bo | Tibet |
+  | bs | Bosnia / Bosnian |
+  | ca | Katalan / Catalan |
+  | cs | Ceko / Czech |
+  | cy | Welsh |
+  | da | Dansk / Danish |
+  | de | Jerman / German |
+  | el | Yunani / Greek |
+  | es | Spanyol / Spanish |
+  | et | Estonia / Estonian |
+  | eu | Basque |
+  | fi | Finlandia / Finnish |
+  | fo | Faroe / Faroese |
+  | fr | Perancis / French |
+  | gl | Galicia / Galician |
+  | gu | Gujarat |
+  | ha | Hausa |
+  | he | Ibrani / Hebrew |
+  | hi | India / Hindi |
+  | hr | Kroasia / Croatian |
+  | ht | Kreol Haiti / Haiti Creol|
+  | hu | Hungaria / Hungarian |
+  | hy | Armenia / Armenian |
+  | is | Islandia / Icelandic |
+  | it | Italia / Italian |
+  | ja | Jepang / Japanese|
   | jw | Jawa / Javanese |
+  | ka | Georgia / Georgian |
+  | kk | Kazakh |
+  | km | Khmer |
+  | kn | Kanada / Kannada|
+  | ko | Korea / Korean |
+  | lb | Luksemburg / Luxembourgish |
+  | ln | Lingala |
+  | lo | Lao |
+  | lt | Lithuania / Lithuanian|
+  | lv | Latvia / Latvian |
+  | mk | Makedonia / Macedonian |
+  | ml | Malayalam |
+  | mr | Marathi |
+  | ms | Malay |
+  | mt | Malta / Maltese|
+  | my | Myanmar |
+  | ne | Nepali |
+  | nl | Belanda / Dutch |
+  | nn | Nynorsk |
+  | no | Norwegia / Norwegian |
+  | oc | Occitan |
+  | pa | Punjabi |
+  | pl | Polandia / Polish |
+  | ps | Pashto |
+  | pt | Portugis / Portuguese |
+  | ro | Romania / Romanian |
+  | ru | Rusia / Russian |
+  | sa | Sansekerta / Sanskrit |
+  | sd | Sindhi |
+  | si | Sinhala |
+  | sk | Slovakia / Slovak |
+  | sl | Slovenia / Slovenian |
+  | sn | Shona |
+  | so | Somalia / Somali |
+  | sq | Albania / Albanian |
+  | sr | Serbia / Serbian |
   | su | Sunda / Sundanese |
+  | sv | Swedia / Swedish |
+  | sw | Swahili |
+  | ta | Tamil |
+  | te | Telugu |
+  | tg | Tajik |
+  | th | Thai |
+  | tk | Turkmenistan / Turkmen |
+  | tl | Tagagalog |
+  | tr | Turki / Turkish |
+  | tt | Tatar |
+  | uk | Ukraina / Ukraininan|
+  | ur | Urdu |
+  | uz | Uzbek |
+  | vi | Vietnam / Vietnamese |
+  | yi | Yiddish |
+  | yo | Yoruba |
+  | zh | Cina / Chinese |
 
 #### **Response**
   | Field | Data Type | Description |
@@ -163,7 +162,8 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | target_language | String | Target language of transcribe |
   | diarization | Boolean | Including Process Diarization or Not |
   | subtitle_cc | Boolean | Creating subtitle file or Not |
-  | summary | Boolean | Creating summary or Not |
+  | resume | Boolean | Creating resume or Not |
+  | wordcloud | Boolean | Creating wordcloud or Not |
   | uuid | String | Used for get the result of transcribe |
   | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprogress'` message |
   | quota | Int | Your quota balance |
@@ -172,16 +172,17 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 ```json
 {
     "bk": {
-        "data":{ 
-            "source_language": <string>,
-            "target_language": <string>,
+        "data": { 
+            "source_language": <str>,
+            "target_language": <str>,
             "diarization": <boolean>,
             "subtitle_cc": <boolean>,
-            "check_summary": <boolean>,
-            "uuid": <string>,
+            "resume": <boolean>,
+            "wordcloud": <boolean>,
+            "uuid": <str>,
             "quota": <int>
         },
-        "message_status": <string>
+        "message_status": <str>
     }
 }
 ```
@@ -206,12 +207,10 @@ def main():
                 default=False, help="including diarization process")
     parser.add_argument("-s", "--subtitle", dest="subtitle_cc",
                 default=True, help="create subtitle file")
-    parser.add_argument("-sm", "--summary", dest="summary",
-                default=True, help="create subtitle file")
-    parser.add_argument("-t", "--title", dest="titlle",
-                default=True, help="create subtitle file")
-    parser.add_argument("-m", "--max-sentence", dest="max_sentence",
-                default=True, help="create subtitle file")
+    parser.add_argument("-r", "--resume", dest="resume",
+                default=False, help="create resume")
+    parser.add_argument("-w", "--wordcloud", dest="wordcloud",
+                default=False, help="create wordcloud")
     parser.add_argument("-p", "--priority", dest="priority",
                 default="reguler", help="priority of transcribe task")
 
@@ -221,7 +220,7 @@ def main():
         return
 
     url_post = "https://api.bahasakita.co.id/v2/prod/stt/async/upload"
-    headers={"Authorization': 'Bearer <your token>"}
+    headers={"Authorization": "Bearer <your token>"}
 
     file = {
         "file": open(args.filename, "rb")
@@ -232,9 +231,8 @@ def main():
         "target_language": args.target_language,
         "diarization": args.diarization,
         "subtitle_cc": args.subtitle_cc,
-        "check_summary": args.summary,
-        "title": args.title,
-        "max_sentence_summary": args.max_sentence,
+        "resume": args.resume,
+        "wordcloud": args.wordcloud,
         "priority": args.priority
     }
 
@@ -255,7 +253,7 @@ if __name__ == "__main__":
 #### **Response when Message Status `'failed'` or `'inquery'`**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
-  | message status | String | status process |
+  | message_status | String | status process |
 
 #### **Example Response (Inquery or Failed) :**
 ```json
@@ -275,26 +273,28 @@ if __name__ == "__main__":
   | duration | Int | Information duration audio (second), information will be displayed if status is `success` |
   | total_segments | Integer | Information total segment of transcribe result, information will be displayed if status is `success` |
   | transcripts | List | Result of transcribe like text, start time, end time, speaker, etc. |
-  | summary | List | Result summary, null string if summary false, data will be displayed if status is `success` |
+  | resume | dict | Result resume, null if resume false, if true contains title, outline, resume, key_points, action_plan, resume_date, status |
+  | wordcloud | String (base64) | Result worcloud, null string if wordcloud false |
+  | top_frequencies | dict | Top ten frequencies word |
   | subtitle_cc | String (base64) | Subtitle file in base64 format, you must decode it, information will be displayed if status is `success` |
   | quota | Int | Remaining quota info, information will be displayed if status is `success` |
-  | message status | String | `'success'`, `'inprogress'` message |
+  | message_status | String | `'success'`, `'inprogress'` message |
   | progress | Float | Percentage progress or null, information will be displayed if status is `inprogress` |
 
 #### **Example Response (In-Progress) :**
 ```json
 {
     "bk": {
-        "uuid": <string>,
+        "uuid": <str>,
         "data": {
-            "source_language": <string>,
-            "target_language": <string>,
+            "source_language": <str>,
+            "target_language": <str>,
             "transcripts": [
                 {
                     "text":"halo nama saya",
-                    "start_time":<float>,
-                    "end_time":<float>,
-                    "speaker": "speaker_01",
+                    "start_time": <float>,
+                    "end_time": <float>,
+                    "speaker": "speaker_01"
                 }
             ]
         },
@@ -309,21 +309,37 @@ if __name__ == "__main__":
 {
     "bk": {
         "data": {
-            "source_language": <string>,
-            "target_language": <string>,
-            "uuid": <string>,
+            "uuid": <str>,
+            "source_language": <str>,
+            "target_language": <str>,
+            "uuid": <str>,
             "duration": <int>,
             "total_segments": <int>, 
             "transcripts": [
                 {
                     "text":"halo nama saya",
-                    "start_time":<float>,
-                    "end_time":<float>,
-                    "speaker": "speaker_01",
+                    "start_time": <float>,
+                    "end_time": <float>,
+                    "speaker": "speaker_01"
                 }
             ],
-            "subtitle_cc": <string> (base64),
-            "summary": <str>
+            "subtitle_cc": <str> (base64),
+            "resume": {
+                "title": <str>,
+                "outline": <list>,
+                "resume": <str>,
+                "key_points": <list>,
+                "action_plan": <list>,
+                "resume_date": <str_date>,
+                "status": <str> // inprogress | success
+            },
+            "wordcloud": <str_base64>,
+            "top_frequencies": [
+                {
+                    "word": <str>,
+                    "frequencies": <int>
+                }
+            ]
         },
         "quota": <int>,
         "message_status": "success"
@@ -349,21 +365,47 @@ def main():
         parser.print_help()
         return
     
-    headers={"Authorization": "Bearer <your token>"
+    headers={"Authorization": "Bearer <your token>"}
     uuid_code = args.uuid    
     url_get = f"https://api.bahasakita.co.id/v2/prod/stt/async/content/{uuid_code}"
 
     while True:
-        get_response = requests.request("GET", url_get, headers=headers).json()
-        print(get_response)
-        if "bk" in get_response and "data" in get_response["bk"] and "transcripts" in get_response["bk"]["data"]:
-            if "subtitle_cc" in get_response["bk"]["data"] and get_response["bk"]["data"]["subtitle_cc"] is None:
-                pass
+        response_get = requests.request("GET", url_post, headers=headers).json()
+        if "bk" in response_get.json():
+            if "data" in response_get.json()["bk"] and "message_status" in response_get.json()["bk"]:
+                if args.resume == "true":
+                    if response_get.json()["bk"]["message_status"] == "success" and response_get.json()["bk"]["data"]["resume"] != None \
+                            and response_get.json()["bk"]["data"]["resume"]["status"] == "success":
+                        print("TRANSCRIPT: ", json.dumps([transcript["speaker"] + ": " + transcript["text"] for transcript in response_get.json()["bk"]["data"]["transcripts"]], indent=4))
+                        print("RESUME    : ", json.dumps(response_get.json()["bk"]["data"]["resume"], indent=4))
+                        break
+                    elif response_get.json()["bk"]["message_status"] == "inquery":
+                        time.sleep(1.0)
+                    elif response_get.json()["bk"]["message_status"] == "inprogress":
+                        print("PROGRESS  : ", json.dumps(response_get.json()["bk"]["progress"]), end="\r")
+                        time.sleep(1.0)
+                    else:
+                        break
+                elif args.resume == "false":
+                    if response_get.json()["bk"]["message_status"] == "success":
+                        print("TRANSCRIPT: ", json.dumps([transcript["speaker"] + ": " + transcript["text"] for transcript in response_get.json()["bk"]["data"]["transcripts"]], indent=4))
+                        break
+                    elif response_get.json()["bk"]["message_status"] == "inquery":
+                        time.sleep(1.0)
+                    elif response_get.json()["bk"]["message_status"] == "inprogress":
+                        print("PROGRESS  : ", json.dumps(response_get.json()["bk"]["progress"]), end="\r")
+                        time.sleep(1.0)
+                    else:
+                        break
             else:
-                with open("subtitle.srt", "wb") as srt:
-                    srt.write(base64.decodebytes(str.encode(get_response["bk"]["data"]["subtitle_cc"])))
+                print(json.dumps(response_get.json(), indent=4))
+                if response_get.status_code >= 400:
+                    break
+                else:
+                    time.sleep(1.0)
+        else:
+            print(response_get.text)
             break
-        time.sleep(1.0)
 
 
 if __name__ == "__main__":

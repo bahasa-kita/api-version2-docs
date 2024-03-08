@@ -40,6 +40,103 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   AudioConn is the first step to start sending the audio bytes you want to transcribe.
 
 #### **Request**
+##### **Language List**
+  | Code-Language | Language |
+  | ------ | ------ |
+  | detect | Language Detect |
+  | id | Indonesia / Indonesian |
+  | en | Inggris / English |
+  | af | Afrikaans |
+  | am | Amharik / Amharic |
+  | ar | Arab / Arabic |
+  | as | Assam |
+  | az | Azerbaijani |
+  | ba | Bashkir |
+  | be | Belarusia / Belarusian |
+  | bg | Bulgaria / Bulgarian |
+  | bn | Benggala / Bengala |
+  | bo | Tibet |
+  | bs | Bosnia / Bosnian |
+  | ca | Katalan / Catalan |
+  | cs | Ceko / Czech |
+  | cy | Welsh |
+  | da | Dansk / Danish |
+  | de | Jerman / German |
+  | el | Yunani / Greek |
+  | es | Spanyol / Spanish |
+  | et | Estonia / Estonian |
+  | eu | Basque |
+  | fi | Finlandia / Finnish |
+  | fo | Faroe / Faroese |
+  | fr | Perancis / French |
+  | gl | Galicia / Galician |
+  | gu | Gujarat |
+  | ha | Hausa |
+  | he | Ibrani / Hebrew |
+  | hi | India / Hindi |
+  | hr | Kroasia / Croatian |
+  | ht | Kreol Haiti / Haiti Creol|
+  | hu | Hungaria / Hungarian |
+  | hy | Armenia / Armenian |
+  | is | Islandia / Icelandic |
+  | it | Italia / Italian |
+  | ja | Jepang / Japanese|
+  | jw | Jawa / Javanese |
+  | ka | Georgia / Georgian |
+  | kk | Kazakh |
+  | km | Khmer |
+  | kn | Kanada / Kannada|
+  | ko | Korea / Korean |
+  | lb | Luksemburg / Luxembourgish |
+  | ln | Lingala |
+  | lo | Lao |
+  | lt | Lithuania / Lithuanian|
+  | lv | Latvia / Latvian |
+  | mk | Makedonia / Macedonian |
+  | ml | Malayalam |
+  | mr | Marathi |
+  | ms | Malay |
+  | mt | Malta / Maltese|
+  | my | Myanmar |
+  | ne | Nepali |
+  | nl | Belanda / Dutch |
+  | nn | Nynorsk |
+  | no | Norwegia / Norwegian |
+  | oc | Occitan |
+  | pa | Punjabi |
+  | pl | Polandia / Polish |
+  | ps | Pashto |
+  | pt | Portugis / Portuguese |
+  | ro | Romania / Romanian |
+  | ru | Rusia / Russian |
+  | sa | Sansekerta / Sanskrit |
+  | sd | Sindhi |
+  | si | Sinhala |
+  | sk | Slovakia / Slovak |
+  | sl | Slovenia / Slovenian |
+  | sn | Shona |
+  | so | Somalia / Somali |
+  | sq | Albania / Albanian |
+  | sr | Serbia / Serbian |
+  | su | Sunda / Sundanese |
+  | sv | Swedia / Swedish |
+  | sw | Swahili |
+  | ta | Tamil |
+  | te | Telugu |
+  | tg | Tajik |
+  | th | Thai |
+  | tk | Turkmenistan / Turkmen |
+  | tl | Tagagalog |
+  | tr | Turki / Turkish |
+  | tt | Tatar |
+  | uk | Ukraina / Ukraininan|
+  | ur | Urdu |
+  | uz | Uzbek |
+  | vi | Vietnam / Vietnamese |
+  | yi | Yiddish |
+  | yo | Yoruba |
+  | zh | Cina / Chinese |
+
 ##### **Body**
   | Field |Data Type | Description |
   | ------ | ------ | ------ |
@@ -49,9 +146,8 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | target_language | String | target language id code for transcription |
   | diarization | Boolean | diarization feature |
   | subtitle_cc | Boolean | subtitle and close caption feature |
-  | check_summary | Boolean | summirize feature |
-  | max_sentence_summary | Int | maximum number of sentences for the summary |
-  | title | String | title of sentences for the summary |
+  | resume | Boolean | resume feature |
+  | wordcloud | Boolean | wordcloud feature |
 
 ##### **Data Structure**
 ```json
@@ -63,9 +159,8 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
         "target_language": "id",
         "diarization": false,
         "subtitle_cc": true,
-        "check_summary": false,
-        "max_sentence_summary": 3,
-        "title": "title"          
+        "resume": false,
+        "wordcloud": false          
     }
 }
 ```
@@ -98,10 +193,9 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
         "target_language": "id",
         "diarization": false,
         "subtitle_cc": true,
-        "check_summary": false,
-        "max_sentence_summary": 3,
-        "title": "title",
         "status": 200,
+        "resume": false,
+        "worcloud": false,
         "message_status": "Koneksi Telah Siap",
     }
 }
@@ -129,7 +223,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 }
 ```
 
-#### **Response**
+#### **Response -- Partial Transcripts**
 ##### **Body**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
@@ -138,7 +232,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | text_type | String | `partial` text or `final` text |
   | status | Int | `200` is `success` or `400` is `failed` |
   | message_status | String | status information |
-  | transcripts | List | result of transcribe conatains {text: `<str>`, start: `<float>`, end: `<float>`, speaker: `<str>`} |
+  | words | List | partial transcript is list of words |
   | quota | Int | your quota balance |
 
 ##### **Data Structure**
@@ -147,20 +241,49 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
     "bk": {
         "service": "stt",
         "type": "audioStream",
-        "data" : {
-            "transcripts": [
-                {
-                    "text": "halo nama saya",
-                    "start_time": <float>,
-                    "end_time": <float>,
-                    "speaker": "SPEAKER_00"
-                }
-            ],
+        "data": {
+            "words": <list>,
             "quota": <int>
         },
-        "text_type": "final",
+        "text_type": "partial",
         "status": 200,
-        "message_status": "Transcript Success",
+        "message_status": "success"
+    }
+}
+```
+
+#### **Response -- Final Trancripts**
+##### **Body**
+  | Field | Data Type | Description |
+  | ------ | ------ | ------ |
+  | service | String | `stt` for speech recognition service|
+  | type | String | `AudioStream` |
+  | text_type | String | `partial` text or `final` text |
+  | status | Int | `200` is `success` or `400` is `failed` |
+  | message_status | String | status information |
+  | source_language | String | code language source |
+  | target_language | String | code language target |
+  | transcripts | List | result of transcribe conatains {text: `<str>`, start: `<float>`, end: `<float>`} |
+  | quota | Int | your quota balance |
+
+##### **Data Structure**
+```json
+{
+    "bk": {
+        "service": "stt",
+        "type": "audioStream",
+        "data": {
+            "source_language": <str>,
+            "target_language": <str>,
+            "transcripts": {
+                "text": <str>,
+                "start": <float>,
+                "end": <float>
+            },
+            "quota": <int>
+         },
+         "text_type": "final",
+         "message_status": "success"
     }
 }
 ```
@@ -207,7 +330,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
             "audio": null
         },
         "status": 200,
-        "message_status": "Audio Stop"
+        "message_status": "success"
     }
 }
 ```
@@ -222,11 +345,12 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | source_language | String | source language id code for transcription |
   | target_language | String | target language id code for transcription |
   | duration | Int | Information duration audio (second), information will be displayed if status is `success` |
-  | total_segments | Integer | Information total segment of transcribe result, information will be displayed if status is `success` |
+  | total_segments | Int | Information total segment of transcribe result, information will be displayed if status is `success` |
   | transcripts | List | result of transcribe conatains {text: `<str>`, start: `<float>`, end: `<float>`, speaker: `<str>`} |
-  | summary | List | Result summary, null string if summary false, data will be displayed if status is `success` |
+  | resume | dict | Result resume, null string if resume false, if resume true, result of resume contains {title: `<str>`, outline: `<list>`, resume: `<str>`, key_points: `<list>`, action_plan: `<list>`, resume_date: `<str-date>`, status `<str>`} |
   | subtitle_cc | String (base64) | Subtitle file in base64 format, you must decode it, information will be displayed if status is `success` |
-  | final | None | Final None |
+  | wordcloud | String (base64) | image wordcloud in base64 format |
+  | top_frequencies | dict | top ten frequencies contains {word: `<str>`, frequencies": `<int>`}  |
   | duration | Int | total duration |
   | quota | Int | your quota balance |
   | status | Int | `200` is `success` or `400` is `failed` |
@@ -238,28 +362,24 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
     "bk": {
         "service": "stt",
         "type": "audioStop",
-        "data" : {
-            "uuid": "xxxxxxxxxxxxxxxxxxxxx",
-            "source_language": "en",
-            "target_language": "en",
-            "total_segments": <int> or null,
-            "transcripts": [
-                {
-                    "text": "halo nama saya",
-                    "start": <float>,
-                    "end": <float>,
-                    "speaker": "SPEAKER_00"
-                }
-            ],
-            "subtitle_cc": <string base64>,
-            "summary": null,
-            "final": null,
+        "data": {
+            "uuid": <str>,
+            "source_language": <str>,
+            "target_language": <str>,
+            "total_segments": <int>,
+            "transcripts": <list>,
+            "subtitle_cc": <str_base64>,
+            "wordcloud": <str_base64>,
+            "top_frequencies": <list>,        // { "word": <str>, "frequencies": <int> }
+            "resume": <null> or <dict>,       // { "title": <str>, "outline": <list>, "resume": <str>, "key_points": <list>, "action_plan": <list>, "resume_date": <str-date>, "status" <str> // "inprogress", "success" }
             "duration": <int>,
-            "quota": <int>
+            "quota": <int>,
+            "finish-state": True
         },
-        "status_quota": true,
+        "quota": <int>,
+        "status_quota": True,
+        "status": 200,
         "message_status": "success"
-    }
 }
 ```
 
@@ -290,9 +410,8 @@ SOURCE_LANG = "id"
 TARGET_LANG = "id"
 DIARIZATION = False
 SUBTITLE_CC = True
-SUMMARY = False
-MAX_SENTENCE = 3
-TITLE = "string title"
+RESUME = False
+WORDCLOUD = False
 
 queue: asyncio.Queue = None
 
@@ -333,9 +452,8 @@ async def main():
                 "target_language": TARGET_LANG,
                 "diarization": DIARIZATION,
                 "subtitle_cc": SUBTITLE_CC,
-                "check_summary": SUMMARY,
-                "max_sentence_summary": MAX_SENTENCE,
-                "title": TITLE
+                "resume": RESUME,
+                "wordcloud": WORDCLOUD
             }
         }
         await ws.send(json.dumps(msg))
@@ -397,26 +515,67 @@ def pyaudio_callback(in_data, frame_count, time_info, status):
 async def receive_message(ws, stream):
     print("Waiting Response....")
     stop_count = 0
+    def check_resume_wordcloud(reply, resume, wordcloud):
+        if resume == "true":
+            if "data" in reply["bk"] and "resume" in reply["bk"]["data"] and reply["bk"]["data"]["resume"] != None \
+                    and "status" in reply["bk"]["data"]["resume"] and reply["bk"]["data"]["resume"]["status"] == "success":
+                if wordcloud == "true":
+                    if "top_frequencies" in reply["bk"]["data"]:
+                        print("WORDCLOUD ", json.dumps(reply["bk"]["data"]["top_frequencies"], indent=4))
+                print("TITLE        : ", reply["bk"]["data"]["resume"]["title"], "\n", sep="")
+                print("OUTLINE      : ", json.dumps(reply["bk"]["data"]["resume"]["outline"], indent=4), "\n", sep="")
+                print("KEY POINTS   : ", json.dumps(reply["bk"]["data"]["resume"]["key_points"], indent=4), "\n", sep="")
+                print("RESUME       : ", reply["bk"]["data"]["resume"]["resume"], "\n", sep="")
+                print("ACTION PLAN  : ", json.dumps(reply["bk"]["data"]["resume"]["action_plan"], indent=4), "\n", sep="")
+                print("RESUME DATE  : ", reply["bk"]["data"]["resume"]["resume_date"], sep="")
+                print("STATUS       : ", reply["bk"]["data"]["resume"]["status"], sep="")
+                break_status = True
+            else:
+                if wordcloud == "true":
+                    if "top_frequencies" in reply["bk"]["data"]:
+                        print("WORDCLOUD ", json.dumps(reply["bk"]["data"]["top_frequencies"], indent=4))
+                break_status = False
+        else:
+            if wordcloud == "true":
+                if "top_frequencies" in reply["bk"]["data"]:
+                    print("WORDCLOUD ", json.dumps(reply["bk"]["data"]["top_frequencies"], indent=4))
+            break_status = True
+        return break_status
+
     while True:
         try:
             reply =  await asyncio.wait_for(ws.recv(), timeout=0.01) ## Receive message
             if not reply is None:
                 reply = json.loads(reply)
                 if reply["bk"]["service"] == "stt":
-                    if "type" in reply["bk"] and "audioStop" == reply["bk"]["type"]:
+                    if "type" in reply["bk"] and "audioStop" == reply["bk"]["type"] and "audio" in reply["bk"]["data"] and reply["bk"]["data"]["audio"]== None:
                         print("End of Stream Audio")
-                        stop_count += 1
-                    if "data" in reply["bk"] and "transcript" in reply["bk"]["data"]:
-                        for transcript in reply["bk"]["data"]["transcript"]:
-                            print("Transcript :", transcript["text"])
-                    if "data" in reply["bk"] and "final" in reply["bk"]["data"]:
-                        print("Final Transcripts :", str(reply["bk"]["data"]["final"]))
-                        stream.stop_stream()
-                        if "data" in reply["bk"] and "subtitle_cc" in reply["bk"]["data"] and reply["bk"]["data"]["subtitle_cc"] != None:
-                            print("Subtitle: \n", base64.decodebytes(str.encode(reply["bk"]["data"]["subtitle_cc"])).decode("utf-8"))
-                        if "data" in reply["bk"] and "summary" in reply["bk"]["data"]:
-                            print("Summary: ",  reply["bk"]["data"]["summary"])
-                            break
+                    if "type" in reply["bk"] and "audioStop" == reply["bk"]["type"] and "final-state" in reply["bk"]["data"] and reply["bk"]["data"]["final-state"]:
+                        if diarization == "true":
+                            text = [transcript["text"] for transcript in reply["bk"]["data"]["transcripts"]]
+                            print("All-Transcript :", " ". join(text))
+                            if "speaker" in reply["bk"]["data"]["transcripts"][0] and reply["bk"]["data"]["transcripts"][0]["speaker"] != None \
+                                    and reply["bk"]["data"]["transcripts"][0]["speaker"] != "":
+                                break_status = check_resume_wordcloud(reply, resume, wordcloud)
+                                if break_status:
+                                    break
+                                else:
+                                    continue
+                            else:
+                                continue
+                        else:
+                            break_status = check_resume_wordcloud(reply, resume, wordcloud)
+                            if break_status:
+                                break
+                            else:
+                                continue
+                    if "type" in reply["bk"] and "audioStream" == reply["bk"]["type"]:
+                        if "words" in reply["bk"]["data"]:
+                            utterance = " ".join(reply["bk"]["data"]["words"])
+                            print("Partial-Transcript :", utterance, end="\r", flush=True)
+                        if "transcripts" in reply["bk"]["data"] and reply["bk"]["data"]["transcripts"] != []:
+                            text = [transcript["text"] for transcript in reply["bk"]["data"]["transcripts"]]
+                            print("Final-Transcript :", " ". join(text))
                 if stop_count > 20:
                     stream.stop_stream()
                     break
