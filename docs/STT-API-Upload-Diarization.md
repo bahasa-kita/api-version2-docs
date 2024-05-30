@@ -24,7 +24,7 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
 
 ### **"How to Use" Flow**
   1. Get your token with [Our API](./Auth-API.md) 
-  2. Upload the audio you want to diarization process and send priority information to `endpoint-post`. 
+  2. Upload the audio you want to diarization process to `endpoint-post`. 
   3. Wait for response, it will give you uuid code and message status of diarization process.
   4. If you want get the result of diarization, you can get it from `endpoint-get`.
    
@@ -36,7 +36,7 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
  Get data: `/v2/prod/diarization/async/content/<uuid>`
 
 ### **Method:**
-  `POST` - When you want upload file and send priority information \
+  `POST` - When you want upload file\
   `GET` - When you want get the result of transcribe 
 
 ### **Request - POST** (Upload Audio)
@@ -50,7 +50,6 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | file | File | Your audio file  |
-  | priority | String | `'high'` or `'reguler'`, if empty priority it will be `'reguler'` |
 
 #### **Response**
   | Field | Data Type | Description |
@@ -81,8 +80,6 @@ def main():
     parser = ArgumentParser()
     parser.add_argument("-f", "--file", dest="filename",
                 help="write report to FILE", metavar="FILE")
-    parser.add_argument("-p", "--priority", dest="priority",
-                default="reguler", help="priority of transcribe task")
 
     args = parser.parse_args()
     if not os.path.exists(args.filename) :
@@ -96,11 +93,7 @@ def main():
         'file': open(args.filename,'rb')
     }
     
-    data = {
-        'priority': args.priority
-    }
-
-    post_response = requests.request("POST", url_post, headers=headers, files=file, data=data).json()
+    post_response = requests.request("POST", url_post, headers=headers, files=file).json()
     print(post_response)
   
 

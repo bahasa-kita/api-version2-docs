@@ -56,7 +56,6 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | subtitle_cc | Boolean | Transcripting process will also create subtitle file if `True` |
   | resume | Boolean | Resume process will also create if `True` |
   | wordcloud | Boolean | Wordcloud process will also create if `True` |
-  | priority | String | `'high'` or `'reguler'`, if empty priority it will be `'reguler'` |
 
 #### **Language List**
   | Code-Language | Language |
@@ -211,8 +210,6 @@ def main():
                 default=False, help="create resume")
     parser.add_argument("-w", "--wordcloud", dest="wordcloud",
                 default=False, help="create wordcloud")
-    parser.add_argument("-p", "--priority", dest="priority",
-                default="reguler", help="priority of transcribe task")
 
     args = parser.parse_args()
     if not os.path.exists(args.filename) :
@@ -232,8 +229,7 @@ def main():
         "diarization": args.diarization,
         "subtitle_cc": args.subtitle_cc,
         "resume": args.resume,
-        "wordcloud": args.wordcloud,
-        "priority": args.priority
+        "wordcloud": args.wordcloud
     }
 
     post_response = requests.request("POST", url_post, headers=headers, files=file, data=data).json()
@@ -273,7 +269,7 @@ if __name__ == "__main__":
   | duration | Int | Information duration audio (second), information will be displayed if status is `success` |
   | total_segments | Integer | Information total segment of transcribe result, information will be displayed if status is `success` |
   | transcripts | List | Result of transcribe like text, start time, end time, speaker, etc. |
-  | resume | dict | Result resume, null if resume false, if true contains title, outline, resume, key_points, action_plan, resume_date, status |
+  | resume | dict | Result resume, null if resume false, if true contains title, resume, key_points, action_plan, resume_date, status |
   | wordcloud | String (base64) | Result worcloud, null string if wordcloud false |
   | top_frequencies | dict | Top ten frequencies word |
   | subtitle_cc | String (base64) | Subtitle file in base64 format, you must decode it, information will be displayed if status is `success` |
@@ -326,7 +322,6 @@ if __name__ == "__main__":
             "subtitle_cc": <str> (base64),
             "resume": {
                 "title": <str>,
-                "outline": <list>,
                 "resume": <str>,
                 "key_points": <list>,
                 "action_plan": <list>,

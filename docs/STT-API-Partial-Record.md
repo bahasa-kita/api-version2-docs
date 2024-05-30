@@ -371,7 +371,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
             "subtitle_cc": <str_base64>,
             "wordcloud": <str_base64>,
             "top_frequencies": <list>,        // { "word": <str>, "frequencies": <int> }
-            "resume": <null> or <dict>,       // { "title": <str>, "outline": <list>, "resume": <str>, "key_points": <list>, "action_plan": <list>, "resume_date": <str-date>, "status" <str> // "inprogress", "success" }
+            "resume": <null> or <dict>,       // { "title": <str>, "resume": <str>, "key_points": <list>, "action_plan": <list>, "resume_date": <str-date>, "status" <str> // "inprogress", "success" }
             "duration": <int>,
             "quota": <int>,
             "finish-state": True
@@ -523,7 +523,6 @@ async def receive_message(ws, stream):
                     if "top_frequencies" in reply["bk"]["data"]:
                         print("WORDCLOUD ", json.dumps(reply["bk"]["data"]["top_frequencies"], indent=4))
                 print("TITLE        : ", reply["bk"]["data"]["resume"]["title"], "\n", sep="")
-                print("OUTLINE      : ", json.dumps(reply["bk"]["data"]["resume"]["outline"], indent=4), "\n", sep="")
                 print("KEY POINTS   : ", json.dumps(reply["bk"]["data"]["resume"]["key_points"], indent=4), "\n", sep="")
                 print("RESUME       : ", reply["bk"]["data"]["resume"]["resume"], "\n", sep="")
                 print("ACTION PLAN  : ", json.dumps(reply["bk"]["data"]["resume"]["action_plan"], indent=4), "\n", sep="")

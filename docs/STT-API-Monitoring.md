@@ -24,7 +24,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 
 ### **"How to Use" Flow**
   1. Get your token with [Our API](./Auth-API.md) 
-  2. Wait for response, and engine will change priority.
+  2. Wait for response.
    
 ### **Host:**
   [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
@@ -52,7 +52,6 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
   | uuid | Key of Object Json | uuid session process |
   | filename | String | audio name from upload |
   | duration | Float | audio duration in seconds |
-  | priority | String | queuing priority |
   | msg_in | Int | Counting of input message from user |
   | msg_out | Int |  Counting of output message taken by user |
   | message_status | String | message status `failed` or `success` |
@@ -70,7 +69,6 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
                         "duration": <float>,
                         "created": "YYYY-MM-DD HH:mm:ss",
                         "filesize": <int - "MB">,  
-                        "priority": "queuing priority <high> or <reguler>"
                     }
                 },
             ],
@@ -81,7 +79,6 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
                         "duration": <float>,
                         "created": "YYYY-MM-DD HH:mm:ss",
                         "filesize": <int - "MB">, 
-                        "priority": "queuing priority <high> or <reguler>"
                     }
                 },
             ],
@@ -92,7 +89,6 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
                         "duration": <float>,
                         "created": "YYYY-MM-DD HH:mm:ss",
                         "filesize": <int - "MB">, 
-                        "priority": "queuing priority <high> or <reguler>"
                     }
                 },
             ],
@@ -103,7 +99,6 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
                         "duration": <float>,
                         "created": "YYYY-MM-DD HH:mm:ss",
                         "filesize": <int - "MB">, 
-                        "priority": "queuing priority <high> or <reguler>"
                     }
                 },
             ]
