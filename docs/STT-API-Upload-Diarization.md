@@ -1,5 +1,5 @@
-# **Speech to Text Diarization API**
-API STT-Diarization Documentation is guidance for communicate with bahasakita speech recognition service.
+# **Speech-to-Text APIs**
+The `Speech-To-Text -Diarization APIs documentation` serves as a comprehensive guide for interacting with Bahasakita Cognitive AI services in speech recognition and speaker separation (diarization), providing essential instructions on how to utilize them effectively.
 
 #### **Table of Contents**
   - [General API Information](#general-api-information)
@@ -22,11 +22,11 @@ API STT-Diarization Documentation is guidance for communicate with bahasakita sp
 ## **Upload STT API**
   In order to use this API, you required to create account by registering yourself.
 
-### **"How to Use" Flow**
+## **How to Use: Step by Step**
   1. Get your token with [Our API](./Auth-API.md) 
   2. Upload the audio you want to diarization process to `endpoint-post`. 
   3. Wait for response, it will give you uuid code and message status of diarization process.
-  4. If you want get the result of diarization, you can get it from `endpoint-get`.
+  4. If you want get the result of diarization, you can get it from `endpoint-get` when `message status` is `'success'`.
    
 ### **Host:**
   [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
@@ -112,8 +112,8 @@ if __name__ == "__main__":
   | ------ | ------ | ------ |
   | total_segments | Integer | Total segment of transcribe result |
   | diarization | List | Result of diarization like start time, end time, and speaker |
-  | qota | Int | Remaining quota info |
-  | message status | String | `'success'`, `'failed'`, `'inquery'` or `'inprogress'` message |
+  | quota | Int | Remaining quota info |
+  | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprogress'` message |
 
 #### **Example Response :**
 ```json

@@ -1,5 +1,5 @@
-# **Speech to Text (Monitoring) API**
-API STT Documentation is guidance for communicate with bahasakita speech recognition service. This part about how to get user information.
+# **Speech-to-Text (Monitoring) APIs**
+The `Speech-To-Text Monitoring APIs documentation` serves as a comprehensive guide for interacting with Bahasakita Cognitive AI services in monitor processing. This results including information about your status.
 
 ## **Table of Contents**
   - [General API Information](#general-api-information)
@@ -22,9 +22,10 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 ### **User Monitoring**
   In order to use this API, you required to create account by registering yourself.
 
-### **"How to Use" Flow**
+## **How to Use: Step by Step**
   1. Get your token with [Our API](./Auth-API.md) 
-  2. Wait for response.
+  2. Request GET To monitor information about your processes.
+  3. Wait for response, this will return the information status that has been processed.
    
 ### **Host:**
   [https://api.bahasakita.co.id](https://api.bahasakita.co.id)

@@ -1,6 +1,5 @@
-
-# AUTH API DOCUMENTATION
-Auth API Documentation is instructions fo creating an user authorization that will be used to take advantage of all bahasakita services.
+# AUTHORIZATION APIs
+The "Authorization APIs documentation" is instructions for create an user authorization, that will be used to take advantage of All Bahasakita services.
 
 ## **Table of Contents**
   - [General API Information](##general-api-information)
@@ -21,10 +20,13 @@ Auth API Documentation is instructions fo creating an user authorization that wi
 ## **Get APIKEY Session Token**
   In order to use our services, you need to get the token with your registered account.
 
-### **"How to Use" Flow**
-  1. Register your account at [dikte.in](https://dikte.in/#/regis?), You can get tokens in the console application or
-  2. Send request to the endpoint with required fields. 
-  3. Wait for response, if `success` you can use the token to use our API service.
+## **How to Use: Step by Step**
+  - Register your account at [dikte.in](https://dikte.in/#/regis?), You can get tokens in the console application 
+  
+    Or
+  
+  - Send `your credentials` with request `GET`to the endpoint for get token services.
+  - Wait for the response, if status is `success`. You will obtain tokens for use with the Cognitive AI services.
 
 ### **Host:**
   [https://api.bahasakita.co.id](https://api.bahasakita.co.id)

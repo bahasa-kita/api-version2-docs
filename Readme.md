@@ -13,4 +13,5 @@ Items       | Sub-Items | Description |
  Speech To Text API       |[STT API Upload](./docs/STT-API-Upload-Transcription.md) | Speech to Text API Documentation for uploading process |
  |      |[STT API Partial Streaming](./docs/STT-API-Partial-Record.md) | Speech to Text API Documentation for partial record or streaming process |
  |      |[STT API Diarization](./docs/STT-API-Upload-Diarization.md) | Speech to Text API Diarization Documentation |
+|      |[Speaker Recognition API](./docs/Speaker-Recognition-API.md) | Speech to Text API User Monitoring Documentation |
  |      |[STT API Monitoring](./docs/STT-API-Monitoring.md) | Speech to Text API User Monitoring Documentation |

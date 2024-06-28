@@ -1,5 +1,5 @@
-# **Speech to Text API**
-API STT Documentation is guidance for communicate with bahasakita speech recognition service with the [WebSocket protocol as defined in RFC 6455](https://www.rfc-editor.org/rfc/rfc6455)
+# **Speech-to-Text APIs**
+The `Speech-To-Text Partial Record APIs documentation` serve as a comprehensive guide for interacting with Bahasakita Cognitive AI services in speaker recognition partial process, We use The [WebSocket protocol as defined in RFC 6455](https://www.rfc-editor.org/rfc/rfc6455) as the communication protocol.
 
 ## **Table of Contents**
   - [General API Information](#general-api-information)
@@ -27,7 +27,7 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 ### **URL ACCESS**
   `wss://api.bahasakita.co.id/v2/prod/stt/record?token=xxxxxxxxxx`
 
-### **"How to Use" Flow**
+## **How to Use: Step by Step**
   1. get token with access [Our API](./Auth-API.md)
   2. Send request message [AudioConn state](#state-1-audioconn).
   3. Read bytes of the audio from your device computer ( microphone or file).

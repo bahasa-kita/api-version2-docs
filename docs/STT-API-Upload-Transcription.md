@@ -1,5 +1,5 @@
-# **Speech to Text Transcription API**
-API STT Documentation is guidance for communicate with bahasakita speech recognition service.
+# **Speech-to-Text APIs**
+The `Speech-To-Text APIs documentation` serves as a comprehensive guide for interacting with Bahasakita Cognitive AI services in speech recognition, providing essential instructions on how to utilize them effectively.
 
 #### **Table of Contents**
   - [General API Information](#general-api-information)
@@ -21,12 +21,12 @@ API STT Documentation is guidance for communicate with bahasakita speech recogni
 ## **Upload STT API**
   In order to use this API, you required to create account by registering yourself.
 
-### **"How to Use" Flow**
+## **How to Use: Step by Step**
   1. Get your token with [Our API](./Auth-API.md) 
   2. Upload the audio you want to transcribe and send the other information like target languange of transcribe to `endpoint-post`. 
-  3. Wait for response, it will give you uuid code and message status of transcripting process.
+  3. Wait for response, it will give you `uuid code` and message status of transcripting process.
   4. If you want know percentage of your transcripting process, you can get it from `endpoint-get` when message status is `'inprogress'`.
-  5. If you want get the result of transcribe, you can get it from `endpoint-get` when message status is `'process success'`.
+  5. If you want get the result of transcribe, you can get it from `endpoint-get` when message status is `'success'`.
    
 ### **Host:**
   [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
