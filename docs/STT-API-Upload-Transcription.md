@@ -4,7 +4,6 @@ The `Speech-To-Text APIs documentation` serves as a comprehensive guide for inte
 #### **Table of Contents**
   - [General API Information](#general-api-information)
   - [Tech Stack](#tech-stack)
-  - [Diagram Process](#diagram-process)
   - [Upload STT API](#upload-stt-api) 
 
 ## **General API Information**
@@ -14,9 +13,6 @@ The `Speech-To-Text APIs documentation` serves as a comprehensive guide for inte
 
 ## **Tech Stack**
   - **[REST](https://restfulapi.net/)**  
-
-## **Diagram Process**
-![Diagram Process](/asset/stt-transcript.png "Diagram Process")
  
 ## **Upload STT API**
   In order to use this API, you required to create account by registering yourself.

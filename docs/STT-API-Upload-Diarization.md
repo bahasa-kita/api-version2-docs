@@ -4,7 +4,6 @@ The `Speech-To-Text -Diarization APIs documentation` serves as a comprehensive g
 #### **Table of Contents**
   - [General API Information](#general-api-information)
   - [Tech Stack](#tech-stack)
-  - [Diagram Process](#diagram-process)
   - [Upload STT API](#upload-stt-api) 
 
 ## **General API Information**
@@ -14,9 +13,6 @@ The `Speech-To-Text -Diarization APIs documentation` serves as a comprehensive g
 
 ## **Tech Stack**
   - **[REST](https://restfulapi.net/)**  
-
-## **Diagram Process**
-  ![Diagram Process](/asset/stt-diarization.png "Diagram Process")
  
  
 ## **Upload STT API**
