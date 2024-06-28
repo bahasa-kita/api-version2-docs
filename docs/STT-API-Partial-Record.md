@@ -1,5 +1,5 @@
 # **Speech-to-Text APIs**
-The `Speech-To-Text Partial Record APIs documentation` serve as a comprehensive guide for interacting with Bahasakita Cognitive AI services in speaker recognition partial process, We use The [WebSocket protocol as defined in RFC 6455](https://www.rfc-editor.org/rfc/rfc6455) as the communication protocol.
+The `Speech-To-Text Partial Record APIs documentation` serve as a comprehensive guide for interacting with Bahasakita Cognitive AI services in the speaker recognition partial process, We use The [WebSocket protocol as defined in RFC 6455](https://www.rfc-editor.org/rfc/rfc6455) for communication protocol.
 
 ## **Table of Contents**
   - [General API Information](#general-api-information)
