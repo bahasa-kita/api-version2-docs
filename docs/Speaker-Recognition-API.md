@@ -61,17 +61,16 @@ The `Speaker Recognition APIs documentation` serve as a comprehensive guide for 
 {
    "bk": {
               "data" : {                        
-                            "type":"identification",
-                            "username":"admin",  
-                            "global":true,                                                 
-                            "result" :{
-                                 "decision" :"speakername1",
-                                 "total_candidates":2, 
-                                 "candidates":
-                             [
-                             {"speakerid":"speakername1","likelihood":25.00},
-                             {"speakerid":"speakername2","likelihood": 75.00}
-                             ]
+                "type":"identification",
+                "global":true,                                                 
+                "results" :{
+                      "decision" :"speakername1",
+                      "total_candidates":2, 
+                      "candidates":
+                  [
+                  {"speakerid":"speakername1","likelihood":25.00},
+                  {"speakerid":"speakername2","likelihood": 75.00}
+                  ]
               }, 
              "message_status": <string>,                    
              "created": datetime.isoformat(),
@@ -149,8 +148,8 @@ if __name__ == "__main__":
 {
   "bk":{
            "data" : {                                                          
-                            "type":"enrollment",
-                            "speakerid":"admin"
+                  "type":"enrollment",
+                  "speakerid":"admin"
              }, 
              "message_status": <string>,                    
              "created": datetime.isoformat(),
@@ -224,8 +223,8 @@ if __name__ == "__main__":
 {
   "bk":{
            "data" : {                                                          
-                            "type":"remove",
-                            "speakerid":"admin"
+                  "type":"remove",
+                  "speakerid":"admin"
              }, 
              "message_status": <string>,                    
              "created": datetime.isoformat(),
