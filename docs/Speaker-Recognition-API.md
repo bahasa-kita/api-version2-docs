@@ -1,5 +1,5 @@
 # **Speaker Recognition APIs**
-The `Speaker Recognition APIs documentation` serve as a comprehensive guide for interacting with Bahasakita Cognitive AI services in detection speaker. Among these capabilities are speaker identification, speaker registration (enrollment), and speaker deletion.
+The `Speaker Recognition APIs documentation` serve as a comprehensive guide for interacting with Bahasakita Cognitive AI services in  speaker recognition. Among these capabilities are speaker identification, speaker registration (enrollment), and speaker deletion.
 
 #### **Table of Contents**
   - [General API Information](#general-api-information)
