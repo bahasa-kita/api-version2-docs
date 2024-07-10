@@ -5,7 +5,7 @@
 
 
 ## Info
-Currently our API for the TTS (text to speech), Audio-Translation, and Text-Translation is currently closed, and currently the API only provides the STT (speech to text). For further information, please contact our email at [info@bahasakita.co.id](info@bahasakita.co.id)
+Currently, our API for Text-to-Speech (TTS), Audio Translation, and Text Translation is closed. At this time, the API only supports Speech-to-Text (STT). For further information, please contact us at [info@bahasakita.co.id](info@bahasakita.co.id)
 
 Items       | Sub-Items | Description |
 ------------        |------------ | ------------ |
