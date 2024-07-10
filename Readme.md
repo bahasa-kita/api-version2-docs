@@ -10,8 +10,8 @@ Currently our API for the TTS (text to speech), Audio-Translation, and Text-Tran
 Items       | Sub-Items | Description |
 ------------        |------------ | ------------ |
 [Auth API](./docs/Auth-API.md)       | | API for get token authorization |
- Speech To Text API       |[STT API Upload](./docs/STT-API-Upload-Transcription.md) | Speech to Text API Documentation for uploading process |
- |      |[STT API Partial Streaming](./docs/STT-API-Partial-Record.md) | Speech to Text API Documentation for partial record or streaming process |
- |      |[STT API Diarization](./docs/STT-API-Upload-Diarization.md) | Speech to Text API Diarization Documentation |
-|      |[Speaker Recognition API](./docs/Speaker-Recognition-API.md) | Speech to Text API User Monitoring Documentation |
- |      |[STT API Monitoring](./docs/STT-API-Monitoring.md) | Speech to Text API User Monitoring Documentation |
+ Speech To Text API       |[STT (Upload) API ](./docs/STT-API-Upload-Transcription.md) | Speech to Text API Documentation for uploading process |
+ |      |[STT (Partial Streaming) API](./docs/STT-API-Partial-Record.md) | Speech to Text API Documentation for partial record or streaming process |
+ |      |[STT Diarization API ](./docs/STT-API-Upload-Diarization.md) | Speech to Text  with Speaker Diarization API Documentation |
+|      |[Speaker Recognition API](./docs/Speaker-Recognition-API.md) | Speaker Recognition Documentation |
+ |      |[STT (Monitoring) API ](./docs/STT-API-Monitoring.md) | Speech to Text API User Monitoring Documentation |
