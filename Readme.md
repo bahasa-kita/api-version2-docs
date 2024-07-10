@@ -4,7 +4,7 @@
 * The use of any other streams, endpoints, parameters, or payloads, etc. is **not supported**; **use them at your own risk and with no guarantees.**
 
 
-## Info
+## Information
 Currently, our API for Text-to-Speech (TTS), Audio Translation, and Text Translation is closed. At this time, the API only supports Speech-to-Text (STT). For further information, please contact us at [info@bahasakita.co.id](info@bahasakita.co.id)
 
 Items       | Sub-Items | Description |
