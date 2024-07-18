@@ -195,7 +195,7 @@ if __name__ == "__main__":
 
 ## **SID Remove API**
 ### **Endpoint :**
- `POST: /v2/prod/sid/remove`
+ `DELETE: /v2/prod/sid/remove`
   
 ### **Request**
 #### **Headers**
@@ -257,7 +257,7 @@ def main():
             "speakerid":"admin"
     }  
 
-    post_response = requests.request("POST", url_post, headers=headers,data=form_data).json()
+    post_response = requests.request("DELETE", url_post, headers=headers,data=form_data).json()
     print(post_response)
   
 if __name__ == "__main__":
