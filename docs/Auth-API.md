@@ -11,7 +11,7 @@ The "Authorization APIs documentation" is instructions for create an user author
 ## **General API Information**
   - The base endpoint is: 
     - [https://dikte.in](https://dikte.in/#/regis?) for Register Account
-    - [https://api.bahasakita.co.id](https://api.bahasakita.co.id) for [REST](https://restfulapi.net/)
+    - [https://api.dikte.in](https://api.dikte.in) for [REST](https://restfulapi.net/)
     - endpoints return is JSON format.
 
 ## **Tech Stack**
@@ -29,7 +29,7 @@ The "Authorization APIs documentation" is instructions for create an user author
   - Wait for the response, if status is `success`. You will obtain tokens for use with the Cognitive AI services.
 
 ### **Host:**
-  [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
+  [https://api.dikte.in](https://dikte.in)
 
 ### **Endpoint**
   `/v2/prod/getTokenServices`
@@ -93,7 +93,7 @@ import base64
 
 
 def main():
-    url = f"https://api.bahasakita.co.id/v2/prod/getTokenServices"
+    url = f"https://api.dikte.in/v2/prod/getTokenServices"
 
     auth = base64.b64encode(f"{str(username)}:{str(password)}".encode("utf-8")).decode("ascii")
     headers_apikey = {
