@@ -47,38 +47,17 @@ The "Authorization APIs documentation" is instructions for create an user author
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | message_status | String | `success` or `error` message|
-  | token_data_stt | String | data for stt services, contains `expires_date`, `quota`, `token`, and `type` |
-  | token_data_tts | String | data for tts services, contains `expires_date`, `quota`, `token`, and `type` |
-  | token_data_text_translate | String | data for text-translate services, contains `expires_date`, `quota`, `token`, and `type` |
-  | token_data_audio_translate | String | data for audio-tanslate services, contains `expires_date`, `quota`, `token`, and `type` |
+  | diktein_credits_token | String | data for speech to text services, contains `expires_date`, `quota`, `token`, and `type` |
 
 #### **Example Response:**
 ```json
     {
         "bk": {
-            "token_data_stt": {
+            "diktein_credits_token": {
                 "expire_date": "YYYY-MM-DDTHH:mm:ss",
                 "quota": <int>,
                 "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-                "type": "STT"
-            },
-            "token_data_tts": {
-                "expire_date": "YYYY-MM-DDTHH:mm:ss",
-                "quota": <int>,
-                "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-                "type": "TTS"
-            },
-            "token_data_text_translate": {
-                "expire_date": "YYYY-MM-DDTHH:mm:ss",
-                "quota": <int>,
-                "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-                "type": "text-translate"
-            },
-            "token_data_audio_translate": {
-                "expire_date": "YYYY-MM-DDTHH:mm:ss",
-                "quota": <int>,
-                "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-                "type": "audio-translate"
+                "type": "diktein-credits"
             },
             "message_status": "success"
         }
@@ -102,10 +81,7 @@ def main():
 
     response_get = requests.request("GET", url, headers=headers_apikey)
     if response_get.status_code == 200:
-        token_stt = response_get.json()["bk"]["token_data_stt"]
-        token_tts = response_get.json()["bk"]["token_data_tts"]
-        token_text_translate = response_get.json()["bk"]["token_data_text_translate"]
-        token_audio_translate = response_get.json()["bk"]["token_data_audio_translate"]
+        token = response_get.json()["bk"]["diktein_credits_token"]["token"]
 
 if __name__ == "__main__":
     main()
