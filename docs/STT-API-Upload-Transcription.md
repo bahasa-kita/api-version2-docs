@@ -1,31 +1,35 @@
-# **Speech-to-Text APIs**
-The `Speech-To-Text APIs documentation` serves as a comprehensive guide for interacting with Bahasakita Cognitive AI services in speech recognition, providing essential instructions on how to utilize them effectively.
+# **Speech to Text Transcription API**
+API STT Documentation is guidance for communicate with bahasakita speech recognition service.
 
-#### **Table of Contents**
+## **Table of Contents**
   - [General API Information](#general-api-information)
   - [Tech Stack](#tech-stack)
+  - [Diagram Process](#diagram-process)
   - [Upload STT API](#upload-stt-api) 
 
 ## **General API Information**
   - The base endpoint is: 
-    - [https://api.bahasakita.co.id](https://api.bahasakita.co.id) for [REST](https://restfulapi.net/)
+    - [https://api.dikte.in](https://api.dikte.in) for [REST](https://restfulapi.net/)
      - All endpoints return JSON object.
 
 ## **Tech Stack**
   - **[REST](https://restfulapi.net/)**  
+
+## **Diagram Process**
+![Diagram Process](/asset/stt-transcript.png "Diagram Process")
  
 ## **Upload STT API**
   In order to use this API, you required to create account by registering yourself.
 
-## **How to Use: Step by Step**
+### **"How to Use" Flow**
   1. Get your token with [Our API](./Auth-API.md) 
   2. Upload the audio you want to transcribe and send the other information like target languange of transcribe to `endpoint-post`. 
-  3. Wait for response, it will give you `uuid code` and message status of transcripting process.
+  3. Wait for response, it will give you uuid code and message status of transcripting process.
   4. If you want know percentage of your transcripting process, you can get it from `endpoint-get` when message status is `'inprogress'`.
-  5. If you want get the result of transcribe, you can get it from `endpoint-get` when message status is `'success'`.
+  5. If you want get the result of transcribe, you can get it from `endpoint-get` when message status is `'process success'`.
    
 ### **Host:**
-  [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
+  [https://api.dikte.in](https://api.dikte.in)
 
 ### **Endpoint**
  Post data: `/v2/prod/stt/async/upload` \
@@ -161,7 +165,7 @@ The `Speech-To-Text APIs documentation` serves as a comprehensive guide for inte
   | wordcloud | Boolean | Creating wordcloud or Not |
   | uuid | String | Used for get the result of transcribe |
   | message_status | String | `'success'`, `'failed'`, `'inquery'` or `'inprogress'` message |
-  | quota | Int | Your quota balance |
+  | credits | Int | Your credits balance |
 
 #### **Example Response :**
 ```json
@@ -175,14 +179,14 @@ The `Speech-To-Text APIs documentation` serves as a comprehensive guide for inte
             "resume": <boolean>,
             "wordcloud": <boolean>,
             "uuid": <str>,
-            "quota": <int>
+            "credits": <int>
         },
         "message_status": <str>
     }
 }
 ```
 
-### **Sample Post in Python:**
+#### **Sample Post in Python:**
 ```python
 import requests
 import os
@@ -212,7 +216,7 @@ def main():
         parser.print_help()
         return
 
-    url_post = "https://api.bahasakita.co.id/v2/prod/stt/async/upload"
+    url_post = "https://api.dikte.in/v2/prod/stt/async/upload"
     headers={"Authorization": "Bearer <your token>"}
 
     file = {
@@ -269,7 +273,7 @@ if __name__ == "__main__":
   | wordcloud | String (base64) | Result worcloud, null string if wordcloud false |
   | top_frequencies | dict | Top ten frequencies word |
   | subtitle_cc | String (base64) | Subtitle file in base64 format, you must decode it, information will be displayed if status is `success` |
-  | quota | Int | Remaining quota info, information will be displayed if status is `success` |
+  | credits | Int | Remaining credits info, information will be displayed if status is `success` |
   | message_status | String | `'success'`, `'inprogress'` message |
   | progress | Float | Percentage progress or null, information will be displayed if status is `inprogress` |
 
@@ -332,13 +336,13 @@ if __name__ == "__main__":
                 }
             ]
         },
-        "quota": <int>,
+        "credits": <int>,
         "message_status": "success"
     }
 }
 ```
 
-### **Sample Get in Python:**
+#### **Sample Get in Python:**
 ```python
 import requests
 import base64
@@ -358,10 +362,10 @@ def main():
     
     headers={"Authorization": "Bearer <your token>"}
     uuid_code = args.uuid    
-    url_get = f"https://api.bahasakita.co.id/v2/prod/stt/async/content/{uuid_code}"
+    url_get = f"https://api.dikte.in/v2/prod/stt/async/content/{uuid_code}"
 
     while True:
-        response_get = requests.request("GET", url_post, headers=headers).json()
+        response_get = requests.request("GET", url_post, headers=headers)
         if "bk" in response_get.json():
             if "data" in response_get.json()["bk"] and "message_status" in response_get.json()["bk"]:
                 if args.resume == "true":

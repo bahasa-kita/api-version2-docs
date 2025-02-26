@@ -1,5 +1,5 @@
-# **Speech-to-Text APIs**
-The `Speech-To-Text Partial Record APIs documentation` serve as a comprehensive guide for interacting with Bahasakita Cognitive AI services in the speaker recognition partial process, We use The [WebSocket protocol as defined in RFC 6455](https://www.rfc-editor.org/rfc/rfc6455) for communication protocol.
+# **Speech to Text API**
+API STT Documentation is guidance for communicate with bahasakita speech recognition service with the [WebSocket protocol as defined in RFC 6455](https://www.rfc-editor.org/rfc/rfc6455)
 
 ## **Table of Contents**
   - [General API Information](#general-api-information)
@@ -11,7 +11,7 @@ The `Speech-To-Text Partial Record APIs documentation` serve as a comprehensive 
 
 ### **General API Information**
   - The base endpoint is: 
-    - `wss://api.bahasakita.co.id` used WEBSOCKET RFC 6455.
+    - `wss://api.dikte.in` used WEBSOCKET RFC 6455.
     - All endpoints return JSON object.
 
 ### **Diagram Activity**
@@ -25,9 +25,9 @@ The `Speech-To-Text Partial Record APIs documentation` serve as a comprehensive 
   | [stop stream audio](#state-3-audiostop) | type : AudioStop    | end stream. you need to request [start stream audio](#start-stream-audio) if you want to send audio again after [stop stream audio](#stop-stream-audio) |
 
 ### **URL ACCESS**
-  `wss://api.bahasakita.co.id/v2/prod/stt/record?token=xxxxxxxxxx`
+  `wss://api.dikte.in/v2/prod/stt/record?token=xxxxxxxxxx`
 
-## **How to Use: Step by Step**
+### **"How to Use" Flow**
   1. get token with access [Our API](./Auth-API.md)
   2. Send request message [AudioConn state](#state-1-audioconn).
   3. Read bytes of the audio from your device computer ( microphone or file).
@@ -233,7 +233,7 @@ The `Speech-To-Text Partial Record APIs documentation` serve as a comprehensive 
   | status | Int | `200` is `success` or `400` is `failed` |
   | message_status | String | status information |
   | words | List | partial transcript is list of words |
-  | quota | Int | your quota balance |
+  | credits | Int | your credits balance |
 
 ##### **Data Structure**
 ```json
@@ -243,7 +243,7 @@ The `Speech-To-Text Partial Record APIs documentation` serve as a comprehensive 
         "type": "audioStream",
         "data": {
             "words": <list>,
-            "quota": <int>
+            "credits": <int>
         },
         "text_type": "partial",
         "status": 200,
@@ -264,7 +264,7 @@ The `Speech-To-Text Partial Record APIs documentation` serve as a comprehensive 
   | source_language | String | code language source |
   | target_language | String | code language target |
   | transcripts | List | result of transcribe conatains {text: `<str>`, start: `<float>`, end: `<float>`} |
-  | quota | Int | your quota balance |
+  | credits | Int | your credits balance |
 
 ##### **Data Structure**
 ```json
@@ -280,7 +280,7 @@ The `Speech-To-Text Partial Record APIs documentation` serve as a comprehensive 
                 "start": <float>,
                 "end": <float>
             },
-            "quota": <int>
+            "credits": <int>
          },
          "text_type": "final",
          "message_status": "success"
@@ -352,7 +352,7 @@ The `Speech-To-Text Partial Record APIs documentation` serve as a comprehensive 
   | wordcloud | String (base64) | image wordcloud in base64 format |
   | top_frequencies | dict | top ten frequencies contains {word: `<str>`, frequencies": `<int>`}  |
   | duration | Int | total duration |
-  | quota | Int | your quota balance |
+  | credits | Int | your credits balance |
   | status | Int | `200` is `success` or `400` is `failed` |
   | message_status | String | status information |
   
@@ -373,10 +373,10 @@ The `Speech-To-Text Partial Record APIs documentation` serve as a comprehensive 
             "top_frequencies": <list>,        // { "word": <str>, "frequencies": <int> }
             "resume": <null> or <dict>,       // { "title": <str>, "resume": <str>, "key_points": <list>, "action_plan": <list>, "resume_date": <str-date>, "status" <str> // "inprogress", "success" }
             "duration": <int>,
-            "quota": <int>,
+            "credits": <int>,
             "finish-state": True
         },
-        "quota": <int>,
+        "credits": <int>,
         "status_quota": True,
         "status": 200,
         "message_status": "success"
@@ -422,7 +422,7 @@ def ask_exit(signame, stream):
     
 async def main():
     # Websocket URL, changed with your token
-    url = f"wss://api.bahasakita.co.id/v2/prod/stt/record?token={AUTH_TOKEN}"
+    url = f"wss://api.dikte.in/v2/prod/stt/record?token={AUTH_TOKEN}"
 
     global queue
     queue = asyncio.Queue()

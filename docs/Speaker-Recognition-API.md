@@ -1,7 +1,7 @@
 # **Speaker Recognition APIs**
 The `Speaker Recognition APIs documentation` serve as a comprehensive guide for interacting with Bahasakita Cognitive AI services in  speaker recognition. Among these capabilities are speaker identification, speaker registration (enrollment), and speaker deletion.
 
-#### **Table of Contents**
+## **Table of Contents**
   - [General API Information](#general-api-information)
   - [Tech Stack](#tech-stack)
   - [Identification Speaker Recogniton API](#sid-identification-api) 
@@ -10,7 +10,7 @@ The `Speaker Recognition APIs documentation` serve as a comprehensive guide for 
 
 ## **General API Information**
   - The base endpoint is: 
-    - [https://api.bahasakita.co.id](https://api.bahasakita.co.id) for [REST](https://restfulapi.net/)
+    - [https://api.dikte.in](https://api.dikte.in) for [REST](https://restfulapi.net/)
      - All endpoints return JSON object.
 
 ## **Tech Stack**
@@ -22,7 +22,7 @@ The `Speaker Recognition APIs documentation` serve as a comprehensive guide for 
   3. Wait for the response. This will return detailed information about the speaker identification process, including timestamps, message status and identified speakers.
    
 ## **Hostname :**
-  [https://api.bahasakita.co.id](https://api.bahasakita.co.id)
+  [https://api.dikte.in](https://api.dikte.in)
 
 
 ## **SID Identification API**
@@ -45,7 +45,7 @@ The `Speaker Recognition APIs documentation` serve as a comprehensive guide for 
   | participants | List of string | By specifying this parameter, the identification process will match the audio to the existing participants. If the parameter is not specified (`None`), the system will match the audio to all speakers previously registered by the user.  |
   | global | Boolean| This parameter is avalaible for on-premise system, Setting is `True` will match audio to all speakers in the database |
 
-### **Response**
+#### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | type | string | `identification` |
@@ -79,7 +79,7 @@ The `Speaker Recognition APIs documentation` serve as a comprehensive guide for 
 }
 ```
 
-### **Sample Post in Python:**
+#### **Sample Post in Python:**
 
 ```python
 import requests
@@ -96,7 +96,7 @@ def main():
         parser.print_help()
         return
 
-    url_post = "https://api.bahasakita.co.id/v2/prod/sid/identification/"
+    url_post = "https://api.dikte.in/v2/prod/sid/identification/"
     headers={"Authorization": "Bearer <your token>"}
     
     file = {
@@ -133,7 +133,7 @@ if __name__ == "__main__":
   | file | File | Your audio file  |
   | speakerid | string| the name of speaker for enrollment process|
 
-### **Response**
+#### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | type | string | `enrollment` |
@@ -158,7 +158,7 @@ if __name__ == "__main__":
 }
 ```
 
-### **Sample Post in Python:**
+#### **Sample Post in Python:**
 ```python
 import requests
 from argparse import ArgumentParser
@@ -174,7 +174,7 @@ def main():
         parser.print_help()
         return
 
-    url_post = "https://api.bahasakita.co.id/v2/prod/sid/enrollment"
+    url_post = "https://api.dikte.in/v2/prod/sid/enrollment"
     headers={"Authorization": "Bearer <your token>"}
     
     file = {
@@ -209,7 +209,7 @@ if __name__ == "__main__":
   | ------ | ------ | ------ |
   | speakerid | string| the name of speaker for enrollment process|
 
-### **Response**
+#### **Response**
   | Field | Data Type | Description |
   | ------ | ------ | ------ |
   | type | string | `remove` |
@@ -233,7 +233,7 @@ if __name__ == "__main__":
 }
 ```
 
-### **Sample Post in Python:**
+#### **Sample Post in Python:**
 
 ```python
 
@@ -250,7 +250,7 @@ def main():
         parser.print_help()
         return
 
-    url_post = "https://api.bahasakita.co.id/v2/prod/sid/remove"
+    url_post = "https://api.dikte.in/v2/prod/sid/remove"
     headers={"Authorization": "Bearer <your token>"}
     
     form_data = {       
